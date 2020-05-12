@@ -1,17 +1,9 @@
 bioinformatica
 =========================================================================================
 |travis| |sonar_quality| |sonar_maintainability| |codacy|
-|code_climate_maintainability| |pip| |downloads|
+|code_climate_maintainability|
 
 repository progetto bioinformatica
-
-How do I install this package?
-----------------------------------------------
-As usual, just download it using pip:
-
-.. code:: shell
-
-    pip install bioinformatica
 
 Tests Coverage
 ----------------------------------------------
@@ -41,14 +33,6 @@ repository progetto bioinformatica
 .. |coveralls| image:: https://coveralls.io/repos/github/steckk/bioinformatica/badge.svg?branch=master
     :target: https://coveralls.io/github/steckk/bioinformatica?branch=master
     :alt: Coveralls Coverage
-
-.. |pip| image:: https://badge.fury.io/py/bioinformatica.svg
-    :target: https://badge.fury.io/py/bioinformatica
-    :alt: Pypi project
-
-.. |downloads| image:: https://pepy.tech/badge/bioinformatica
-    :target: https://pepy.tech/project/bioinformatica
-    :alt: Pypi total project downloads
 
 .. |codacy| image:: https://api.codacy.com/project/badge/Grade/7ec4300768084dd48eda3e8d4dcbde9c
     :target: https://www.codacy.com/manual/steckk/bioinformatica?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=steckk/bioinformatica&amp;utm_campaign=Badge_Grade
