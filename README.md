@@ -1,2 +1,0 @@
-# bioinformatica
-repository progetto bioinformatica
