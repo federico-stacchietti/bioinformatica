@@ -11,7 +11,7 @@ def preprocessing(dataset, labels):
 
     dataset = imputation(dataset)
     dataset = balance(dataset, labels, random_state)
-    dacompositions = data_decomposition(dataset, algorithms)
+    decompositions = data_decomposition(dataset, algorithms)
 
 
 
