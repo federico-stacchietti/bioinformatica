@@ -25,8 +25,9 @@ def balance(dataset, labels, random_state):
     minority_count, minority_label = min(counts, key=lambda x: x[0])
     if minority_count < max_unbalance:
         majority_class = dataset.iloc[np.where(labels != minority_label)]
+        to_sample = max_unbalance - minority_count
         # trova i sample della classe sbilanciata, gli fa il resample e lo unisce alla classe non sbilanciata,
         # poi fa lo shuffle
         dataset = shuffle(pd.concat([majority_class, resample(dataset.iloc[np.where(labels == minority_label)],
-                          random_state=random_state, n_samples=max_unbalance - minority_count)], axis=0), random_state=random_state)
+                          random_state=random_state, n_samples=to_sample)], axis=0), random_state=random_state)
     return dataset
