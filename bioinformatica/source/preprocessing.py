@@ -29,3 +29,5 @@ def check_balance(epigenomes, labels):
 
 def drop_constant_feature(epigenomes):
     return epigenomes.loc[:, (epigenomes != epigenomes.iloc[0]).any()]
+
+
