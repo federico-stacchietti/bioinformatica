@@ -27,7 +27,16 @@ def check_balance(epigenomes, labels):
         epigenomes = shuffle(pd.concat([majority_class, resample(epigenomes.iloc[np.where(labels == minority_label)],
                             random_state=0, n_samples=max_unbalance - minority_count)], axis=0), random_state=0)
 
-def drop_constant_feature(epigenomes):
-    return epigenomes.loc[:, (epigenomes != epigenomes.iloc[0]).any()]
+# Input:dataframe. Controlla la presenza di feature costanti. Se presenti, le elimina dal dataframe e lo restituisce
+def drop_constant_features(epigenomes):
+    const_features = [feature for feature in epigenomes.columns if epigenomes[feature].nunique() == 1]
+    non_const_features = [feature for feature in epigenomes.columns if feature not in const_features]
+    if not non_const_features:
+        pass
+        # print('there is no constant feature in the dataset')
+    else:
+        return(epigenomes[non_const_features])
+
+
 
 
