@@ -15,3 +15,4 @@ def load_dataset(cell_line, window_size):
     labels = labels.values.ravel()
     return epigenomes, labels
 
+# ho eliminato venv da github
