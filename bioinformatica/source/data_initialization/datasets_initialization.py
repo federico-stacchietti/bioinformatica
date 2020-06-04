@@ -10,7 +10,8 @@ from keras_mixed_sequence import MixedSequence
 def get_epigenomes(cell_line, window_size, type, holdouts):
     epigenomes, labels = load_dataset(cell_line, window_size, type)
     for training_indexes, test_indexes in holdouts.split(epigenomes, labels):
-        yield (epigenomes.iloc[training_indexes], labels[training_indexes]), (epigenomes.iloc[test_indexes], labels[test_indexes])
+        yield (epigenomes.iloc[training_indexes], labels[training_indexes]),\
+              (epigenomes.iloc[test_indexes], labels[test_indexes])
 
 
 def get_sequences(cell_line, genome, window_size, type, holdouts):
