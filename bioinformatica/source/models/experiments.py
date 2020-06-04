@@ -24,6 +24,6 @@ class Experiment:
     def train(self):
         for model in self.models:
             for training_set, training_labels, test_set, test_labels, hyperparameters in \
-                    zip(self.data[0], self.hyperparameters_list):
+                    zip(self.data, self.hyperparameters_list):
                 model.fit(training_set, training_labels, hyperparameters)
                 self.results.append((model.predict(training_set), model.predict(test_set)))
