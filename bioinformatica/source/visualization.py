@@ -2,33 +2,56 @@ import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.decomposition import PCA
 
+def binary_visualization(points, labels, filename):
 
-#global for test
-righe = 2
-colonne = 4
+    #si può ottimizzare?
+    xs0 = []
+    ys0 = []
+    xs1 = []
+    ys1 = []
 
-colors = np.array([
-    "tab:blue",
-    "tab:orange",
-])
+    for index in range(len(labels)):
 
-def pca(x:np.ndarray, n_components:int=2)->np.ndarray:
-    return PCA(n_components=n_components, random_state=42).fit_transform(x)
+        if labels[index]==0:
+            xs0.append(points[index][0])
+            ys0.append(points[index][1])
+        else:
+            xs1.append(points[index][0])
+            ys1.append(points[index][1])
+
+    fig = plt.figure()
+    ax1 = fig.add_subplot(1, 1, 1)
+
+    ax1.plot(xs0, ys0, 'bo', xs1, ys1, 'ro')
+
+    ax1.set_ylabel('y')
+    ax1.set_xlabel('x')
+
+    #plt.show()
+    plt.savefig(filename)
 
 
 
 
+if __name__ == '__main__':
 
-def visualization(nrows, ncols, function, xs, ys, titles, colors):
+    #TEST DI ESECUZIONE
 
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(32, 16))
+    X = np.array([[-1, -1], [-2, -1], [-3, -2], [1, 1], [2, 1], [3, 2]])
+    pca = PCA(n_components=2)
+    pca.fit(X)
+    res = pca.transform(X)
 
-    for x, y, title, axis in zip(xs, ys, titles, axes.flatten()):
-        axis.scatter(*function(x).T, s=1, color=colors[y])
-        axis.xaxis.set_visible(False)
-        axis.yaxis.set_visible(False)
-        axis.set_title(f"PCA decomposition - {title}")
-    plt.show()
+    for x in res:
+        print(x)
 
-#main
-visualization(righe, colonne, pca, xs, ys, titles, colors)
+    print("")
+
+    print(res)#res obbiettivo da stampare
+
+    etichette = [0,1,0,1,0,1]
+
+    print (etichette)
+
+    binary_visualization(res, etichette, 'grafico.png')
+
