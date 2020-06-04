@@ -4,6 +4,7 @@ from sklearn.metrics import balanced_accuracy_score, balanced_accuracy_score, ro
 
 from tensorflow.keras.metrics import AUC
 
+
 class Experiment:
     def __init__(self, data_type, experiment_params):
         self.data_type = data_type
@@ -14,7 +15,4 @@ class Experiment:
 
     def train(self):
         for model in self.models:
-            for training_set, training_labels, test_set, test_labels, hyperparameters in \
-                    zip(self.data, self.hyperparameters_list):
-                model.fit(training_set, training_labels, hyperparameters)
-                self.results.append((model.predict(training_set), model.predict(test_set)))
+            pass
