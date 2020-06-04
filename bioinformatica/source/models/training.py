@@ -1,6 +1,3 @@
-from multiprocessing import Process
-
-
 from bioinformatica.source.models.definition import define_models
 
 
