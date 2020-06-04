@@ -20,31 +20,32 @@ metrics = [
 
 
 class Model:
-    def __init__(self, type, training_set, test_set, training_parameters=None):
-        self._type = type
-        if self._type in ['SVM', 'DecTree', 'RandForest']:
-            self._is_NN = False
-        else:
-            self._is_NN = True
-        self._training_set, self._test_set = training_set, test_set
-        self._training_parameters = training_parameters
-        self._model = None
-        self._trained_model = None
-        self._scores = []
+    def __init__(self, type, isNN, training_set, test_set, training_parameters=None):
+        self.__type = type
+        self.__is_NN = isNN
+        self.__training_set, self.__test_set = training_set, test_set
+        self.__training_parameters = training_parameters
+        self.__model = None
+        self.__trained_model = None
+        self.__scores = []
 
     def build(self, parameters):
-        self._model = build_models.get(self._type)(parameters)
+        self.__model = build_models.get(self.__type)(parameters)
 
     def train(self):
-        if self._is_NN:
-            training_data = (*self._training_set, *self._test_set, self._training_parameters)
-            self._trained_model = train_model(self._is_NN, self._model, training_data)
+        if self.__is_NN:
+            training_data = (*self.__training_set, *self.__test_set, self.__training_parameters)
+            self.__trained_model = train_model(self.__is_NN, self.__model, training_data)
         else:
-            self._trained_model = train_model(self._is_NN, self._model, self._training_set)
+            self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
-    def model_accuracy(self):
+    def accuracy(self):
         for metric in metrics:
-            self._scores.append(metric(self._test_set[-1], test_model(self._trained_model)))
+            self.__scores.append(metric(self.__test_set[-1], test_model(self.__trained_model, self.__test_set[0])))
+        return self.__scores
 
+    def get_type(self):
+        return self.__type
 
+    type = property(get_type)
 
