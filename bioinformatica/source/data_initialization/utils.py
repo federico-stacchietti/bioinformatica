@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
+
 from epigenomic_dataset import load_epigenomes
-from ucsc_genomes_downloader import Genome
-from keras_bed_sequence import BedSequence
-from keras_mixed_sequence import MixedSequence
+
+from sklearn.model_selection import StratifiedShuffleSplit
+
 
 def load_dataset(cell_line, window_size, type):
     epigenomes, labels = load_epigenomes(
@@ -15,3 +16,6 @@ def load_dataset(cell_line, window_size, type):
     labels = labels.values.ravel()
     return epigenomes, labels
 
+
+def get_holdouts(n_split, test_size, random_state):
+    return StratifiedShuffleSplit(n_splits=n_split, test_size=test_size, random_state=random_state)
