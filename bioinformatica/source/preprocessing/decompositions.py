@@ -18,7 +18,6 @@ def data_decomposition(epigenomes, algorithms):
             for perplexity in perplexities:
                 decompositions.append(('TSNE', TSNE_function(epigenomes, n_components, perplexity, learning_rate)))
     return decompositions
-    pass
 
 
 def PCA_function(dataset, n_components):
