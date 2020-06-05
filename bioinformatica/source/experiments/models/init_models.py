@@ -10,8 +10,6 @@ build_models = {
 }
 
 
-
-
 class Model:
     def __init__(self, type, isNN, training_set, test_set, training_parameters=None):
         self.__type = type
