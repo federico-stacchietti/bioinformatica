@@ -1,7 +1,7 @@
 from bioinformatica.source.data_initialization.datasets_initialization import get_data
-from bioinformatica.source.experiments.models.init_models import Model
-from bioinformatica.source.experiments.models_definition import define_models
-from bioinformatica.source.experiments.experiments_utils import *
+from bioinformatica.source.models_builder.models.init_models import Model
+from bioinformatica.source.models_builder.models.models_definition import define_models
+from bioinformatica.source.models_builder.expereiments_builder.experiments_utils import *
 
 
 class Experiment:

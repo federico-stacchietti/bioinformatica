@@ -1,5 +1,4 @@
-from bioinformatica.source.experiments.models.models_libraries import *
-from bioinformatica.source.experiments.models.models_functions import *
+from bioinformatica.source.models_builder.models.models_functions import *
 
 
 build_models = {
