@@ -39,7 +39,7 @@ class Experiment:
                     if model_info.metric.__name__ > best_score:
                         best_score, best_parameters = model_info.metric.__name__, model_info.parameters
                 model_best_scores.append((metric.__name__, best_score, best_parameters))
-            self.__best_scores.get(algorithm).append(model_best_scores)
+                self.__best_scores.get(algorithm).append(model_best_scores)
         return self.__best_scores
 
     def get_results(self):
