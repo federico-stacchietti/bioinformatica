@@ -1,8 +1,7 @@
-from scipy.stats import wilcoxon
-
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, roc_auc_score, average_precision_score
-
 from dataclasses import dataclass
+
+from scipy.stats import wilcoxon
+from sklearn.metrics import accuracy_score, balanced_accuracy_score, roc_auc_score, average_precision_score
 
 statistical_tests = {
     wilcoxon: [.01, .05, .1]
