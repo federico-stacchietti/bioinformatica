@@ -3,6 +3,7 @@ from bioinformatica.source.experiments.models.init_models import Model
 from bioinformatica.source.experiments.models_definition import define_models
 from bioinformatica.source.experiments.experiments_utils import *
 
+
 class Experiment:
     def __init__(self, models, data_type, experiment_params):
         self.__data_type = data_type
