@@ -1,4 +1,4 @@
-from bioinformatica.source.experiments.models.models_libraries import *
+from bioinformatica.source.models_builder.models.models_libraries import *
 
 
 def build_SVM(hyperparameters):
