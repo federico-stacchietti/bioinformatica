@@ -32,8 +32,8 @@ class Experiment:
 
     def best_by_algorithm(self):
         for algorithm in self.__results:
-            model_best_scores = []
             for metric in metrics:
+                model_best_scores = []
                 best_score, best_parameters = 0, None
                 for model_info in self.__results.get(algorithm):
                     if model_info.metric.__name__ > best_score:
