@@ -1,8 +1,6 @@
 from bioinformatica.source.experiments.models.models_libraries import *
 from bioinformatica.source.experiments.models.models_functions import *
 
-from sklearn.metrics import accuracy_score, balanced_accuracy_score, roc_auc_score, average_precision_score
-
 
 build_models = {
     'SVM': build_SVM,
@@ -11,12 +9,7 @@ build_models = {
     'NN': build_NeuralNetwork
 }
 
-metrics = [
-    accuracy_score,
-    balanced_accuracy_score,
-    roc_auc_score,
-    average_precision_score
-]
+
 
 
 class Model:
@@ -24,6 +17,7 @@ class Model:
         self.__type = type
         self.__is_NN = isNN
         self.__training_set, self.__test_set = training_set, test_set
+        self.__X_test, self.__y_test = self.__test_set
         self.__training_parameters = training_parameters
         self.__model = None
         self.__trained_model = None
@@ -39,10 +33,8 @@ class Model:
         else:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
-    def accuracy(self):
-        for metric in metrics:
-            self.__scores.append(metric(self.__test_set[-1], test_model(self.__trained_model, self.__test_set[0])))
-        return self.__scores
+    def metrics(self, metric):
+        return str(metric), metric(self.__y_test, test_model(self.__trained_model, self.__X_test))
 
     def get_type(self):
         return self.__type
