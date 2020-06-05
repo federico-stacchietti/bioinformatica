@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-
 from epigenomic_dataset import load_epigenomes
 
 from sklearn.model_selection import StratifiedShuffleSplit

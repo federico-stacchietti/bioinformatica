@@ -1,7 +1,7 @@
 from bioinformatica.source.data_initialization.datasets_initialization import get_data
+from bioinformatica.source.models_builder.expereiments_builder.experiments_utils import *
 from bioinformatica.source.models_builder.models.init_models import Model
 from bioinformatica.source.models_builder.models.models_definition import define_models
-from bioinformatica.source.models_builder.expereiments_builder.experiments_utils import *
 
 
 class Experiment:
@@ -22,8 +22,8 @@ class Experiment:
             training_data, test_data = holdout
             algorithms = define_models()
             for algorithm in algorithms:
-                for hyperparameters_list, training_parameters in algorithms.get(algorithm):
-                    model = Model(algorithm, algorithm == 'NN', training_data, test_data, training_parameters)
+                for hyperparameters_list in algorithms.get(algorithm):
+                    model = Model(algorithm, algorithm == 'NN', training_data, test_data)
                     for hyperparameters in hyperparameters_list:
                         model.build(hyperparameters)
                         model.train()

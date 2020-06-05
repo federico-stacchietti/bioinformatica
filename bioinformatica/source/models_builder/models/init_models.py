@@ -10,18 +10,22 @@ build_models = {
 
 
 class Model:
-    def __init__(self, type, isNN, training_set, test_set, training_parameters=None):
+    def __init__(self, type, isNN, training_set, test_set):
         self.__type = type
         self.__is_NN = isNN
         self.__training_set, self.__test_set = training_set, test_set
         self.__X_test, self.__y_test = self.__test_set
-        self.__training_parameters = training_parameters
+        self.__training_parameters = None
         self.__model = None
         self.__trained_model = None
         self.__scores = []
 
     def build(self, parameters):
-        self.__model = build_models.get(self.__type)(parameters)
+        if self.__is_NN:
+            self.__training_parameters = parameters[-1]
+            self.__model = build_models.get(self.__type)(parameters[:-1])
+        else:
+            self.__model = build_models.get(self.__type)(parameters)
 
     def train(self):
         if self.__is_NN:
@@ -31,9 +35,11 @@ class Model:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
     def metrics(self, metric):
+        a = 0
         return str(metric), metric(self.__y_test, test_model(self.__trained_model, self.__X_test))
 
     def get_type(self):
+        a = 0
         return self.__type
 
     type = property(get_type)

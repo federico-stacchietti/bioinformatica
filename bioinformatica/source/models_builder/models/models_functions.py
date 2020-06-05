@@ -13,8 +13,8 @@ def build_RandomForest(hyperparameters):
     return RandomForestClassifier(hyperparameters)
 
 
-def build_NeuralNetwork(hyperparameters):
-    network_parameters, compiling_parameters = hyperparameters
+def build_NeuralNetwork(parameters):
+    network_parameters, compiling_parameters = parameters
     model = Sequential(network_parameters)
     return model.compile(compiling_parameters)
 
