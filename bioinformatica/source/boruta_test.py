@@ -27,7 +27,8 @@ def get_features_filter(X, y)->BorutaPy:
         n_estimators='auto',
         verbose=2,
         alpha=0.05, # p_value
-        max_iter=10, # In practice one would run at least 100-200 times
+        max_iter=200,           #10, # In practice one would run at least 100-200 times
+        #da testare il numero di iterazioni
         random_state=42
     )
     boruta_selector.fit(X.values, y)#.values.ravel())
