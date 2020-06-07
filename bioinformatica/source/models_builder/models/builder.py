@@ -1,4 +1,4 @@
-from bioinformatica.source.models_builder.models.models_functions import *
+from bioinformatica.source.models_builder.models.intialization_functions import *
 
 
 build_models = {
