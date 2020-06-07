@@ -1,4 +1,4 @@
-from bioinformatica.source.models_builder.models.models_libraries import *
+from bioinformatica.source.models_builder.models.libraries import *
 
 
 def define_models():
