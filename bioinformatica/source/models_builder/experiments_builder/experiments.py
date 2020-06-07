@@ -22,24 +22,24 @@ class Experiment:
             training_data, test_data = holdout
             algorithms = define_models()
             for algorithm in algorithms:
-                for hyperparameters_list in algorithms.get(algorithm):
+                for hyperparameters in algorithms.get(algorithm):
                     model = Model(algorithm, algorithm == 'NN', training_data, test_data)
-                    for hyperparameters in hyperparameters_list:
-                        model.build(hyperparameters)
-                        model.train()
-                        self.__results.get(algorithm).append(ModelInfo(hyperparameters,
-                                                                       [model.metrics(metric) for metric in metrics]))
+                    model.build(hyperparameters)
+                    model.train()
+                    self.__results.get(algorithm).append(ModelInfo(hyperparameters,
+                                                                   [model.metrics(metric) for metric in metrics]))
 
     def best_by_algorithm(self):
         for algorithm in self.__results:
+            model_best_scores = []
             for metric in metrics:
-                model_best_scores = []
                 best_score, best_parameters = 0, None
                 for model_info in self.__results.get(algorithm):
-                    if model_info.metric.__name__ > best_score:
-                        best_score, best_parameters = model_info.metric.__name__, model_info.parameters
+                    model_current_score = getattr(model_info, metric.__name__)
+                    if model_current_score > best_score:
+                        best_score, best_parameters = model_current_score, model_info.parameters
                 model_best_scores.append((metric.__name__, best_score, best_parameters))
-                self.__best_scores.get(algorithm).append(model_best_scores)
+            self.__best_scores.get(algorithm).append(model_best_scores)
         return self.__best_scores
 
     def get_results(self):
