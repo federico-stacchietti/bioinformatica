@@ -71,7 +71,7 @@ print(type(etichette))
 
 
 
-
+#fefefef
 
 #Chiamo la funzione
 X_filtered = get_features_filter(epigenoma, etichette).transform(epigenoma.values)
