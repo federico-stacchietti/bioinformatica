@@ -22,7 +22,7 @@ def build_NeuralNetwork(parameters):
 
 def train_model(is_NN, model, training_data):
     if is_NN:
-        X_train, y_train, X_test, y_test, training_parameters = training_data
+        X_train, y_train, training_parameters = training_data
         return \
             model.fit(X_train, y_train, **training_parameters)
     else:
