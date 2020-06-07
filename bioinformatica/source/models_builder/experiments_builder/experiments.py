@@ -9,7 +9,6 @@ class Experiment:
         self.__data_type = data_type
         self.__experiment_params = experiment_params
         self.__holdouts = get_data(data_type)(experiment_params)
-        self.__models = models
         self.__results, self.__best_scores = [{model: [] for model in self.__models}] * 2
         self.__best_model = None
 
