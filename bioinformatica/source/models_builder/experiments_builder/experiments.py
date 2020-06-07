@@ -10,11 +10,7 @@ class Experiment:
         self.__experiment_params = experiment_params
         self.__holdouts = get_data(data_type)(experiment_params)
         self.__models = models
-        self.__results = {model: [] for model in self.__models}
-
-        self.__best_scores = {model: [] for model in self.__models}
-        self.__worst_scores = {}
-
+        self.__results, self.__best_scores = [{model: [] for model in self.__models}] * 2
         self.__best_model = None
 
     def execute(self):
