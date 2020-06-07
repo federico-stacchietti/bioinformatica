@@ -29,7 +29,7 @@ class Model:
 
     def train(self):
         if self.__is_NN:
-            training_data = (*self.__training_set, *self.__test_set, self.__training_parameters)
+            training_data = (*self.__training_set, self.__training_parameters)
             self.__trained_model = train_model(self.__is_NN, self.__model, training_data)
         else:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
