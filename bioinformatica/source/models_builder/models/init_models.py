@@ -35,11 +35,9 @@ class Model:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
     def metrics(self, metric):
-        a = 0
-        return str(metric), metric(self.__y_test, test_model(self.__trained_model, self.__X_test))
+        return metric(self.__y_test, test_model(self.__trained_model, self.__X_test))
 
     def get_type(self):
-        a = 0
         return self.__type
 
     type = property(get_type)
