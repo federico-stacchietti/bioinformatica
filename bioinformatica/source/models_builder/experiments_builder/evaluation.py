@@ -12,4 +12,4 @@ def evaluate(scores, statistical_test, metric, alpha):
                 if p_value < alpha:
                     if comparison_score.mean() < best_score.mean():
                         best_model, best_score = second_model, comparison_score
-    return metric.__name__, alpha, best_model
+    return alpha, metric.__name__, best_score, best_model
