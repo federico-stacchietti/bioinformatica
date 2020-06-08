@@ -1,5 +1,7 @@
-from bioinformatica.source.models_builder.expereiments_builder.experiments import *
+from bioinformatica.source.models_builder.experiments_builder.builder import *
 
 
 if __name__ == '__main__':
-    pass
+    dicctt = {'a': [1, 2], 'b': [5, 6]}
+
+    print([[x] + dicctt.get(x) for x in dicctt])
