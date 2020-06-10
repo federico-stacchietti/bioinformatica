@@ -10,10 +10,10 @@ statistical_tests = [
 ]
 
 metrics = [
-    accuracy_score,
-    balanced_accuracy_score,
-    roc_auc_score,
-    average_precision_score
+    (accuracy_score, 'labels'),
+    (balanced_accuracy_score, 'labels'),
+    (roc_auc_score, 'prob'),
+    (average_precision_score, 'labels')
 ]
 
 
@@ -23,7 +23,7 @@ class ModelInfo:
         self.algorithm = algorithm
         self.parameters = parameters
         for metric, score in zip(metrics, scores):
-            setattr(self, metric.__name__, score)
+            setattr(self, metric[0].__name__, score)
 
 
 def print_models(isNN, model):
