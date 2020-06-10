@@ -22,17 +22,14 @@ def get_epigenomes(parameters):
 
 def get_sequences(parameters):
     cell_line, genome, window_size, type, n_split, test_size, random_state = parameters
-    batch_size = 1024
     epigenomes, labels = load_dataset(cell_line, window_size, type)
     bed = epigenomes.reset_index()[epigenomes.index.names]
     for training_indexes, test_indexes in get_holdouts(n_split, test_size, random_state).split(epigenomes, labels):
-        yield MixedSequence(
-            x=BedSequence(genome, bed.iloc[training_indexes], batch_size=batch_size),
+        yield [data for data in MixedSequence(
+            x=BedSequence(genome, bed.iloc[training_indexes], batch_size=len(training_indexes)),
             y=labels[training_indexes],
-            batch_size=batch_size
-        ),
-        MixedSequence(
-            x=BedSequence(genome, bed.iloc[test_indexes], batch_size=batch_size),
-            y=labels[test_indexes],
-            batch_size=batch_size
-        )
+            batch_size=len(training_indexes))[0]], \
+              [data for data in MixedSequence(
+                  x=BedSequence(genome, bed.iloc[test_indexes], batch_size=len(test_indexes)),
+                  y=labels[test_indexes],
+                  batch_size=len(test_indexes))[0]]
