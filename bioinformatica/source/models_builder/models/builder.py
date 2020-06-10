@@ -37,7 +37,10 @@ class Model:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
     def metrics(self, metric):
-        return metric(self.__y_test, np.round(test_model(self.__trained_model, self.__X_test)))
+        if metric[1] == 'labels':
+            return metric[0](self.__y_test, np.round(test_model(self.__trained_model, self.__X_test)))
+        else:
+            return metric[0](self.__y_test, test_model(self.__trained_model, self.__X_test))
 
     def get_type(self):
         return self.__type

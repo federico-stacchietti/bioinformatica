@@ -33,10 +33,10 @@ class Experiment:
             for metric in metrics:
                 best_score, best_parameters = 0, None
                 for model_info in self.__results.get(algorithm):
-                    model_current_score = getattr(model_info, metric.__name__)
+                    model_current_score = getattr(model_info, metric[0].__name__)
                     if model_current_score > best_score:
                         best_score, best_parameters = model_current_score, model_info.parameters
-                model_best_scores.append((metric.__name__, best_score, best_parameters))
+                model_best_scores.append((metric[0].__name__, best_score, best_parameters))
             self.__best_scores.get(algorithm).append(model_best_scores)
         return self.__best_scores
 
