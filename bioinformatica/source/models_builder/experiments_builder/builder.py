@@ -10,7 +10,8 @@ class Experiment:
         self.__data_type = data_type
         self.__experiment_params = experiment_params
         self.__holdouts = get_data(data_type)(experiment_params)
-        self.__results, self.__best_scores = [{model: [] for model in algorithms}] * 2
+        self.__results = {model: [] for model in algorithms}
+        self.__best_scores = {model: [] for model in algorithms}
         self.__best_model = None
         self.__alphas = alphas
         self.__statistical_tests_scores = {}
@@ -20,30 +21,34 @@ class Experiment:
             training_data, test_data = holdout
             defined_algorithms = define_models()
             for algorithm in defined_algorithms:
+                print('start: ', algorithm)
                 for hyperparameters in defined_algorithms.get(algorithm):
                     model = Model(algorithm, algorithm == 'NN', training_data, test_data)
                     model.build(hyperparameters)
                     model.train()
                     self.__results.get(algorithm).append(ModelInfo(algorithm, hyperparameters,
-                                                                   [model.metrics(metric) for metric in metrics]))
+                                                        [model.metrics(metric) for metric in metrics], model.get_model()))
+                print('stop: ', algorithm)
 
-    def best_by_algorithm(self):
+    def best_scores(self):
         for algorithm in self.__results:
             model_best_scores = []
             for metric in metrics:
-                best_score, best_parameters = 0, None
+                best_score, best_model = 0, None
                 for model_info in self.__results.get(algorithm):
                     model_current_score = getattr(model_info, metric[0].__name__)
                     if model_current_score > best_score:
-                        best_score, best_parameters = model_current_score, model_info.parameters
-                model_best_scores.append((metric[0].__name__, best_score, best_parameters))
+                        best_score, best_model = model_current_score, model_info
+                model_best_scores.append((metric[0].__name__, best_score, best_model))
             self.__best_scores.get(algorithm).append(model_best_scores)
         return self.__best_scores
 
     def print_best_models(self):
         for algorithm in self.__best_scores:
-            for score in self.__best_scores.get(algorithm):
-                print_model(algorithm, score[-1])
+            for models_info in self.__best_scores.get(algorithm):
+                for metric, score, model in models_info:
+                    if model:
+                        print_model(algorithm, metric, score, model)
 
     def get_results(self):
         return self.__results
@@ -56,6 +61,3 @@ class Experiment:
                 for metric in metrics:
                     self.__statistical_tests_scores.get(statistical_test) \
                         .append(evaluate(scores, statistical_test, metric, alpha))
-
-    best_scores = property(best_by_algorithm)
-    all_results = property(get_results)
