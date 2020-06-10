@@ -1,4 +1,5 @@
 from bioinformatica.source.models_builder.models.intialization_functions import *
+import numpy as np
 
 
 build_models = {
@@ -29,13 +30,14 @@ class Model:
 
     def train(self):
         if self.__is_NN:
-            training_data = (*self.__training_set, *self.__test_set, self.__training_parameters)
-            self.__trained_model = train_model(self.__is_NN, self.__model, training_data)
+            training_data = (*self.__training_set, self.__training_parameters)
+            train_model(self.__is_NN, self.__model, training_data)
+            self.__trained_model = self.__model
         else:
             self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
 
     def metrics(self, metric):
-        return metric(self.__y_test, test_model(self.__trained_model, self.__X_test))
+        return metric(self.__y_test, np.round(test_model(self.__trained_model, self.__X_test)))
 
     def get_type(self):
         return self.__type

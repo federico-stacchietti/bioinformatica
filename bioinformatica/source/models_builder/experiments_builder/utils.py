@@ -2,6 +2,8 @@ from dataclasses import dataclass
 
 from scipy.stats import wilcoxon
 from sklearn.metrics import accuracy_score, balanced_accuracy_score, roc_auc_score, average_precision_score
+from pprint import pprint
+
 
 statistical_tests = [
     wilcoxon
@@ -19,7 +21,18 @@ metrics = [
 class ModelInfo:
     def __init__(self, algorithm, parameters, scores):
         self.algorithm = algorithm
-        self.parameters = ' ,'.join([str(parameter) + ' : ' +
-                                     str(parameters.get(parameter)) for parameter in parameters])
+        self.parameters = parameters
         for metric, score in zip(metrics, scores):
             setattr(self, metric.__name__, score)
+
+
+def print_models(isNN, model):
+    if not isNN:
+        print(model.algorithm)
+        pprint(model.parameters)
+    else:
+        print(model.summary())
+        pprint(model[1])
+        pprint(model[-1])
+        for obj in model[-1].get('callbacks'):
+            pprint(vars(obj))
