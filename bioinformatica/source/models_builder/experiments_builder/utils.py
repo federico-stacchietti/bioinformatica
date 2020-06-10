@@ -26,9 +26,9 @@ class ModelInfo:
             setattr(self, metric[0].__name__, score)
 
 
-def print_models(isNN, model):
-    if not isNN:
-        print(model.algorithm)
+def print_model(algorithm, model):
+    if not algorithm == 'NN':
+        print(algorithm)
         pprint(model.parameters)
     else:
         print(model.summary())

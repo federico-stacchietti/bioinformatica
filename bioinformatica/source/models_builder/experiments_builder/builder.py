@@ -40,6 +40,11 @@ class Experiment:
             self.__best_scores.get(algorithm).append(model_best_scores)
         return self.__best_scores
 
+    def print_best_models(self):
+        for algorithm in self.__best_scores:
+            for score in self.__best_scores.get(algorithm):
+                print_model(algorithm, score[-1])
+
     def get_results(self):
         return self.__results
 
