@@ -45,5 +45,6 @@ class Model:
     def get_type(self):
         return self.__type
 
-    type = property(get_type)
+    def get_model(self):
+        return self.__model
 
