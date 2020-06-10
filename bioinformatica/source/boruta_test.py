@@ -18,7 +18,7 @@ def imputation(epigenomes:pd.DataFrame)->pd.DataFrame: #DA RIVEDERE?
 
 #------------------------------------
 
-def get_features_filter(X, y)->BorutaPy:
+def boruta_filter(X , y)->BorutaPy:
 
     forest = RandomForestClassifier(n_jobs=cpu_count(), class_weight='balanced', max_depth=5)
 
@@ -27,7 +27,7 @@ def get_features_filter(X, y)->BorutaPy:
         n_estimators='auto',
         verbose=2,
         alpha=0.05, # p_value
-        max_iter=200,           #10, # In practice one would run at least 100-200 times
+        max_iter=10,           #In practice one would run at least 100-200 times
         #da testare il numero di iterazioni
         random_state=42
     )
@@ -74,7 +74,7 @@ print(type(etichette))
 #fefefef
 
 #Chiamo la funzione
-X_filtered = get_features_filter(epigenoma, etichette).transform(epigenoma.values)
+X_filtered = boruta_filter(epigenoma, etichette).transform(epigenoma.values)
 print(X_filtered)
 
 
