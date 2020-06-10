@@ -1,7 +1,7 @@
 from keras_bed_sequence import BedSequence
 from keras_mixed_sequence import MixedSequence
 from bioinformatica.source.data_initialization.utils import get_holdouts
-
+import numpy as np
 from bioinformatica.source.data_initialization.utils import load_dataset
 
 
@@ -22,14 +22,13 @@ def get_epigenomes(parameters):
 
 def get_sequences(parameters):
     cell_line, genome, window_size, type, n_split, test_size, random_state = parameters
-    epigenomes, labels = load_dataset(cell_line, window_size, type)
+    epigenomes, epigenomes_labels = load_dataset(cell_line, window_size, type)
     bed = epigenomes.reset_index()[epigenomes.index.names]
-    for training_indexes, test_indexes in get_holdouts(n_split, test_size, random_state).split(epigenomes, labels):
-        yield [data for data in MixedSequence(
-            x=BedSequence(genome, bed.iloc[training_indexes], batch_size=len(training_indexes)),
-            y=labels[training_indexes],
-            batch_size=len(training_indexes))[0]], \
-              [data for data in MixedSequence(
-                  x=BedSequence(genome, bed.iloc[test_indexes], batch_size=len(test_indexes)),
-                  y=labels[test_indexes],
-                  batch_size=len(test_indexes))[0]]
+    sequences, sequence_labels = [data for data in MixedSequence(
+                x=BedSequence(genome, bed.iloc[np.arange(len(epigenomes_labels))], batch_size=len(epigenomes_labels)),
+                y=epigenomes_labels[np.arange(len(epigenomes_labels))],
+                batch_size=len(epigenomes_labels))[0]]
+    for training_indexes, test_indexes in get_holdouts(n_split, test_size, random_state)\
+            .split(sequences, sequence_labels):
+        yield ((sequences[training_indexes], sequence_labels[training_indexes]),
+               (sequences[test_indexes], sequence_labels[test_indexes]))
