@@ -9,7 +9,7 @@ def drop_constant_features(dataset: pd.DataFrame) -> pd.DataFrame:
     return dataset[non_const_features]
 
 
-def rebalance_classes(dataset: pd.DataFrame, labels: np.array, random_state: int) -> (pd.DataFrame, np.array):
+def balance(dataset: pd.DataFrame, labels: np.array, random_state: int) -> (pd.DataFrame, np.array):
     n_samples = len(dataset)
     max_unbalance = n_samples // 10
     unique, counts = np.unique(labels, return_counts=True)
