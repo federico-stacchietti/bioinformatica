@@ -6,6 +6,8 @@ def define_models():
     models = {}
     for name, defined_models in algorithms:
         models[name] = []
-        for model in defined_models:
+        for model in models:
             models.get(name).append(model)
     return models
+
+
