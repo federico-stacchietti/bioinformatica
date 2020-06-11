@@ -21,7 +21,7 @@ def uncorrelated_test(dataset: pd.DataFrame, labels: np.array, p_value_threshold
     for score in scores:
         for key in score:
             if score.get(key)[1] > p_value_threshold:
-                uncorrelated.update(key)
+                uncorrelated.add(key)
     return list(uncorrelated)
 
 
