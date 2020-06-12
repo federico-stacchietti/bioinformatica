@@ -40,9 +40,9 @@ class Experiment:
                         best_score, best_model = model_current_score, model_info
                 model_best_scores.append((metric[0].__name__, best_score, best_model))
             self.__best_scores.get(algorithm).append(model_best_scores)
-        return self.__best_scores
 
     def print_best_models(self):
+        self.best_scores()
         for algorithm in self.__best_scores:
             for models_info in self.__best_scores.get(algorithm):
                 for metric, score, model in models_info:
