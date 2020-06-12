@@ -20,7 +20,7 @@ class Experiment:
         dataset, labels = pipeline(((self.__data_parameters, self.__data_type), self.__holdout_parameters[-1]))
         for holdout in get_holdouts(dataset, labels, self.__holdout_parameters):
             training_data, test_data = holdout
-            defined_algorithms = define_models()
+            defined_algorithms = define_models(self.__data_type, len(dataset.columns))
             for algorithm in defined_algorithms:
                 for hyperparameters in defined_algorithms.get(algorithm):
                     model = Model(algorithm, algorithm == 'NN', training_data, test_data)

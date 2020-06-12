@@ -31,8 +31,9 @@ def pipeline(data_parameters):
     load_parameters, random_state = data_parameters
     dataset, labels = get_data(data_parameters)
 
-    if data_type == 'epigenomic':
+    if load_parameters[-1] == 'epigenomic':
         p_value_threshold, min_correlation, correlation_threshold = 0.01, 0.05, 0.95
-        return epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation, correlation_threshold)
+        return epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation,
+                                        correlation_threshold)
     else:
         return sequences_preprocessing(dataset, labels, random_state)
