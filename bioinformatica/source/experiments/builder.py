@@ -1,9 +1,9 @@
 from .utils import *
+from ..datasets.builder import get_holdouts
+from ..preprocessing.pipeline import pipeline
 from ..models.builder import Model
 from ..models.definition import define_models
 from ..experiments.evaluation import evaluate
-from ...data_initialization.datasets_initialization import get_holdouts
-from ...preprocessing.pipeline import pipeline
 
 
 class Experiment:
