@@ -1,4 +1,4 @@
-from bioinformatica.source.models_builder.experiments_builder.builder import *
+from bioinformatica.source.models_builder.experiments.builder import *
 
 
 if __name__ == '__main__':

@@ -1,5 +1,4 @@
-from bioinformatica.source.models_builder.models.libraries import *
-
+from ..models.libraries import *
 
 def define_models():
     algorithms = []
