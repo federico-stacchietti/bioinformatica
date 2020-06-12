@@ -1,5 +1,4 @@
-from bioinformatica.source.data_initialization.utils import holdouts
-from bioinformatica.source.data_initialization.utils import load_dataset
+from .utils import holdouts, load_dataset
 
 import numpy as np
 from ucsc_genomes_downloader import Genome
