@@ -1,9 +1,10 @@
+from bioinformatica.source.data_initialization.utils import holdouts
+from bioinformatica.source.data_initialization.utils import load_dataset
+
+import numpy as np
+from ucsc_genomes_downloader import Genome
 from keras_bed_sequence import BedSequence
 from keras_mixed_sequence import MixedSequence
-from bioinformatica.source.data_initialization.utils import holdouts
-import numpy as np
-from bioinformatica.source.data_initialization.utils import load_dataset
-from ucsc_genomes_downloader import Genome
 
 
 def get_data(parameters):
