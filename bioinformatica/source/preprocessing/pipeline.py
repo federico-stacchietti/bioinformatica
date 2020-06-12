@@ -28,7 +28,7 @@ def sequences_preprocessing(dataset, labels, random_state):
 
 
 def pipeline(data_parameters):
-    load_parameters, data_type, random_state = data_parameters
+    load_parameters, random_state = data_parameters
     dataset, labels = get_data(data_parameters)
 
     if data_type == 'epigenomic':

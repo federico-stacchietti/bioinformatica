@@ -7,11 +7,11 @@ from keras_mixed_sequence import MixedSequence
 
 
 def get_data(parameters):
-    data_parameters, data_type = parameters
+    load_parameters, data_type = parameters
     if data_type == 'epigenomic':
-        return load_dataset(data_parameters)
+        return load_dataset(load_parameters)
     if data_type == 'sequences':
-        epigenomes, labels = load_dataset(data_parameters)
+        epigenomes, labels = load_dataset(load_parameters)
         genome = Genome('hg19')
         bed = epigenomes.reset_index()[epigenomes.index.names]
         batch_size = len(labels)
