@@ -1,9 +1,9 @@
-from bioinformatica.source.models_builder.experiments_builder.utils import *
-from bioinformatica.source.models_builder.models.builder import Model
-from bioinformatica.source.models_builder.models.definition import define_models
-from bioinformatica.source.models_builder.experiments_builder.evaluation import evaluate
-from bioinformatica.source.data_initialization.datasets_initialization import get_holdouts
-from bioinformatica.source.preprocessing.pipeline import *
+from .utils import *
+from ..models.builder import Model
+from ..models.definition import define_models
+from ..experiments.evaluation import evaluate
+from ...data_initialization.datasets_initialization import get_holdouts
+from ...preprocessing.pipeline import pipeline
 
 
 class Experiment:
@@ -27,7 +27,7 @@ class Experiment:
                     model.build(hyperparameters)
                     model.train()
                     self.__results.get(algorithm).append(ModelInfo(algorithm, hyperparameters,
-                                                        [model.metrics(metric) for metric in metrics], model.get_model()))
+                                                    [model.metrics(metric) for metric in metrics], model.get_model()))
 
     def best_scores(self):
         for algorithm in self.__results:

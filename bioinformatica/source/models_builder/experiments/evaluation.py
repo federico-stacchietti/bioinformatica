@@ -1,4 +1,4 @@
-from bioinformatica.source.models_builder.experiments_builder.utils import metrics
+from .utils import metrics
 
 
 def evaluate(scores, statistical_test, metric, alpha):

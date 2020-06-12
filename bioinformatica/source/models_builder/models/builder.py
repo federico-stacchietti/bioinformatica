@@ -1,4 +1,4 @@
-from bioinformatica.source.models_builder.models.intialization_functions import *
+from ..models.intialization_functions import *
 import numpy as np
 
 
