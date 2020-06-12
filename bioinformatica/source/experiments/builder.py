@@ -1,5 +1,5 @@
 from .utils import *
-from ..datasets.builder import get_holdouts
+from ..datasets.loader import get_holdouts
 from ..preprocessing.pipeline import pipeline
 from ..models.builder import Model
 from ..models.definition import define_models
