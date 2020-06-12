@@ -1,34 +1,27 @@
 from keras_bed_sequence import BedSequence
 from keras_mixed_sequence import MixedSequence
-from bioinformatica.source.data_initialization.utils import get_holdouts
+from bioinformatica.source.data_initialization.utils import holdouts
 import numpy as np
 from bioinformatica.source.data_initialization.utils import load_dataset
+from ucsc_genomes_downloader import Genome
 
 
-def get_data(type):
-    if type == 'epigenomic':
-        return get_epigenomes
-    if type == 'sequences':
-        return get_sequences
+def get_data(parameters):
+    data_parameters, data_type = parameters
+    if data_type == 'epigenomic':
+        return load_dataset(data_parameters)
+    if data_type == 'sequences':
+        epigenomes, labels = load_dataset(data_parameters)
+        genome = Genome('hg19')
+        bed = epigenomes.reset_index()[epigenomes.index.names]
+        batch_size = len(labels)
+        return [data for data in MixedSequence(
+                x=BedSequence(genome, bed.iloc[np.arange(batch_size)], batch_size=batch_size),
+                y=labels[np.arange(batch_size)],
+                batch_size=batch_size)[0]]
 
 
-def get_epigenomes(parameters):
-    cell_line, window_size, type, n_split, test_size, random_state = parameters
-    epigenomes, labels = load_dataset(cell_line, window_size, type)
-    for training_indexes, test_indexes in get_holdouts(n_split, test_size, random_state).split(epigenomes, labels):
-        yield ((epigenomes.iloc[training_indexes], labels[training_indexes]),
-               (epigenomes.iloc[test_indexes], labels[test_indexes]))
-
-
-def get_sequences(parameters):
-    cell_line, genome, window_size, type, n_split, test_size, random_state = parameters
-    epigenomes, epigenomes_labels = load_dataset(cell_line, window_size, type)
-    bed = epigenomes.reset_index()[epigenomes.index.names]
-    sequences, sequence_labels = [data for data in MixedSequence(
-                x=BedSequence(genome, bed.iloc[np.arange(len(epigenomes_labels))], batch_size=len(epigenomes_labels)),
-                y=epigenomes_labels[np.arange(len(epigenomes_labels))],
-                batch_size=len(epigenomes_labels))[0]]
-    for training_indexes, test_indexes in get_holdouts(n_split, test_size, random_state)\
-            .split(sequences, sequence_labels):
-        yield ((sequences[training_indexes], sequence_labels[training_indexes]),
-               (sequences[test_indexes], sequence_labels[test_indexes]))
+def get_holdouts(dataset, labels, holdout_parameters):
+    for training_indexes, test_indexes in holdouts(holdout_parameters).split(dataset, labels):
+        yield ((dataset.iloc[training_indexes], labels[training_indexes]),
+               (dataset.iloc[test_indexes], labels[test_indexes]))

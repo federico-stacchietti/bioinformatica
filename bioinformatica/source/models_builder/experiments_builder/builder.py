@@ -1,15 +1,15 @@
-from bioinformatica.source.data_initialization.datasets_initialization import get_data
 from bioinformatica.source.models_builder.experiments_builder.utils import *
 from bioinformatica.source.models_builder.models.builder import Model
 from bioinformatica.source.models_builder.models.definition import define_models
 from bioinformatica.source.models_builder.experiments_builder.evaluation import evaluate
+from bioinformatica.source.data_initialization.datasets_initialization import get_holdouts
+from bioinformatica.source.preprocessing.pipeline import *
 
 
 class Experiment:
-    def __init__(self, algorithms, data_type, experiment_params, alphas):
+    def __init__(self, algorithms, data_type, data_parameters, holdout_parameters, alphas):
         self.__data_type = data_type
-        self.__experiment_params = experiment_params
-        self.__holdouts = get_data(data_type)(experiment_params)
+        self.__data_parameters, self.__holdout_parameters = data_parameters, holdout_parameters
         self.__results = {model: [] for model in algorithms}
         self.__best_scores = {model: [] for model in algorithms}
         self.__best_model = None
@@ -17,18 +17,17 @@ class Experiment:
         self.__statistical_tests_scores = {}
 
     def execute(self):
-        for holdout in self.__holdouts:
+        dataset, labels = pipeline(self.__data_parameters)
+        for holdout in get_holdouts(dataset, labels, self.__holdout_parameters):
             training_data, test_data = holdout
             defined_algorithms = define_models()
             for algorithm in defined_algorithms:
-                print('start: ', algorithm)
                 for hyperparameters in defined_algorithms.get(algorithm):
                     model = Model(algorithm, algorithm == 'NN', training_data, test_data)
                     model.build(hyperparameters)
                     model.train()
                     self.__results.get(algorithm).append(ModelInfo(algorithm, hyperparameters,
                                                         [model.metrics(metric) for metric in metrics], model.get_model()))
-                print('stop: ', algorithm)
 
     def best_scores(self):
         for algorithm in self.__results:
