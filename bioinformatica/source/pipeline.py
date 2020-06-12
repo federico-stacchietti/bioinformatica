@@ -1,6 +1,6 @@
 from ucsc_genomes_downloader import Genome
 
-from bioinformatica.source.data_initialization.datasets_initialization import get_epigenomes, get_sequences
+from bioinformatica.source.data_initialization.datasets_initialization import get_data
 from bioinformatica.source.models_builder.experiments_builder.builder import *
 import pandas as pd
 import numpy as np
@@ -12,6 +12,22 @@ from bioinformatica.source.preprocessing.feature_selection import boostaroota_fi
 from bioinformatica.source.preprocessing.imputation import nan_check, nan_filter, imputation
 
 
+def pipeline(data_parameters):
+
+    load_parameters, data_type = data_parameters
+    cell_line, window_size, epigenomes_type = load_parameters
+
+
+    #data_retrival
+
+    dataset, labels = get_data(data_parameters)
+
+    #data elaboration
+
+    if data_type == 'epigenomic':
+
+
+    #visualization?
 
 
 
