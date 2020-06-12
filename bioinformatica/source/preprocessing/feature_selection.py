@@ -21,5 +21,5 @@ def boruta_filter(dataset: pd.DataFrame, labels: np.array, max_iter: int, p_valu
 
 
 def boostaroota_filter(dataset : pd.DataFrame, labels : np.array) -> pd.DataFrame:
-    br = BoostARoota(metric='logloss')
+    br = BoostARoota(metric='logloss', silent=True)
     return br.fit_transform(dataset, labels)

@@ -11,10 +11,49 @@ from bioinformatica.source.preprocessing.elaboration import balance, robust_zsco
 from bioinformatica.source.preprocessing.feature_selection import boostaroota_filter
 from bioinformatica.source.preprocessing.imputation import nan_check, nan_filter, imputation
 
+def epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation, correlation_threshold):
+
+    if nan_check(dataset):
+        dataset, labels = nan_filter(dataset, labels)
+        dataset = imputation(dataset)
+
+    # elaboration
+    dataset, labels = balance(dataset, labels, random_state)
+    dataset = drop_constant_features(dataset)
+    dataset = robust_zscoring(dataset)
+
+    # correlation
+    dataset = filter_uncorrelated(dataset, labels, p_value_threshold, min_correlation)
+    dataset = filter_correlated_features(dataset, p_value_threshold, correlation_threshold)
+
+    # feature_selection
+    dataset = boostaroota_filter(dataset, labels)
+
+    return dataset, labels
+
+def sequences_nan_detection(sequences: pd.DataFrame) -> bool:
+    i, j = 0, 0
+    for x in sequences:
+        if x.shape[-1] == 200:
+            i += 1
+        for y in x:
+            if y.shape[-1] == 4:
+                j += 1
+    return len(sequences) * i * j != 99909 * 200 * 4
+
+def sequences_preprocessing(dataset, labels, random_state):
+
+    if not(sequences_nan_detection(dataset)):
+        dataset, labels = balance(dataset, labels, random_state)
+        return dataset, labels
+    else:
+        print('NaN in sequences')
+
+
 
 def pipeline(data_parameters):
 
-    load_parameters, data_type = data_parameters
+    load_parameters, data_type, random_state = data_parameters
     cell_line, window_size, epigenomes_type = load_parameters
 
 
@@ -25,6 +64,10 @@ def pipeline(data_parameters):
     #data elaboration
 
     if data_type == 'epigenomic':
+        p_value_threshold, min_correlation, correlation_threshold = 0.01, 0.05, 0.95
+        dataset, labels = epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation, correlation_threshold)
+    else:
+        sequences_preprocessing(dataset, labels, random_state)
 
 
     #visualization?
