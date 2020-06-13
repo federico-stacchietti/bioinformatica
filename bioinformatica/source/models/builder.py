@@ -1,4 +1,5 @@
 from ..models.intialization_functions import *
+from ..experiments.utils import metrics
 import numpy as np
 
 
@@ -11,40 +12,35 @@ build_models = {
 
 
 class Model:
-    def __init__(self, type, isNN, training_set, test_set):
-        self.__type = type
+    def __init__(self, algorithm, isNN):
+        self.__algorithm = algorithm
         self.__is_NN = isNN
-        self.__training_set, self.__test_set = training_set, test_set
-        self.__X_test, self.__y_test = self.__test_set
         self.__training_parameters = None
         self.__model = None
         self.__trained_model = None
-        self.__scores = []
+        self.scores = {metric[0].__name__: [] for metric in metrics}
 
     def build(self, parameters):
         if self.__is_NN:
             self.__training_parameters = parameters[-1]
-            self.__model = build_models.get(self.__type)(parameters[:-1])
+            self.__model = build_models.get(self.__algorithm)(parameters[:-1])
         else:
-            self.__model = build_models.get(self.__type)(parameters)
+            self.__model = build_models.get(self.__algorithm)(parameters)
 
-    def train(self):
+    def train(self, training_data):
         if self.__is_NN:
-            training_data = (*self.__training_set, self.__training_parameters)
-            train_model(self.__is_NN, self.__model, training_data)
+            train_model(self.__is_NN, self.__model, (*training_data, self.__training_parameters))
             self.__trained_model = self.__model
         else:
-            self.__trained_model = train_model(self.__is_NN, self.__model, self.__training_set)
+            self.__trained_model = train_model(self.__is_NN, self.__model, training_data)
 
-    def metrics(self, metric):
+    def test_metrics(self, metric, test_data):
+        X_test, y_test = test_data
         if metric[1] == 'labels':
-            return metric[0](self.__y_test, np.round(test_model(self.__trained_model, self.__X_test)))
+            self.scores.get(metric[0].__name__)\
+                .append(metric[0](y_test, np.round(test(self.__trained_model, X_test))))
         else:
-            return metric[0](self.__y_test, test_model(self.__trained_model, self.__X_test))
-
-    def get_type(self):
-        return self.__type
+            self.scores.get(metric[0].__name__).append(metric[0](y_test, test(self.__trained_model, X_test)))
 
     def get_model(self):
         return self.__model
-

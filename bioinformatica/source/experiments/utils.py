@@ -17,19 +17,6 @@ metrics = [
 ]
 
 
-@dataclass
-class ModelInfo:
-    def __init__(self, algorithm, parameters, scores, model=None):
-        self.algorithm = algorithm
-        self.parameters = parameters
-        for metric, score in zip(metrics, scores):
-            setattr(self, metric[0].__name__, score)
-        if self.algorithm == 'NN':
-            self.nn_model = model
-        else:
-            self.nn_model = None
-
-
 def print_model(algorithm, metric, score, model):
     if not algorithm == 'NN':
         print(algorithm, '\n', metric, score)
