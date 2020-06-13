@@ -17,9 +17,10 @@ def boruta(dataset: pd.DataFrame, labels: np.array, max_iter: int, p_value_thres
         max_iter=max_iter,
         random_state=random_state
     )
-    return boruta_selector.fit_transform(dataset.values, labels)
+    dataset = boruta_selector.fit_transform(dataset.values, labels)
+    return dataset
 
 
 def boostaroota(dataset: pd.DataFrame, labels: np.array) -> pd.DataFrame:
-    br = BoostARoota(metric='logloss', silent=True)
-    return br.fit_transform(dataset, labels)
+    boostaroota_ = BoostARoota(metric='logloss', silent=True)
+    return boostaroota_.fit_transform(dataset, labels)
