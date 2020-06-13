@@ -7,3 +7,7 @@ scipy~=1.4.1
 boostaroota~=1.3
 Boruta~=0.3
 tensorflow~=2.2.0
+keras-bed-sequence~=1.1.1
+keras-mixed-sequence~=1.0.9
+ucsc-genomes-downloader~=1.1.18
+epigenomic-dataset~=1.1.5
