@@ -11,3 +11,4 @@ keras-bed-sequence~=1.1.1
 keras-mixed-sequence~=1.0.9
 ucsc-genomes-downloader~=1.1.18
 epigenomic-dataset~=1.1.5
+keras-tqdm~=2.0.1
