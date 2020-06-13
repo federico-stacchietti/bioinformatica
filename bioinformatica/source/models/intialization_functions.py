@@ -29,5 +29,5 @@ def train_model(is_NN, model, training_data):
         return model.fit(X_train, y_train)
 
 
-def test_model(trained_model, X_test):
+def test(trained_model, X_test):
     return trained_model.predict(X_test)
