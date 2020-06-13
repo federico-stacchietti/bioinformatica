@@ -9,7 +9,9 @@ from keras_mixed_sequence import MixedSequence
 def get_data(parameters):
     load_parameters, data_type = parameters
     if data_type == 'epigenomic':
-        return load_dataset(load_parameters)
+        dataset, labels = load_dataset(load_parameters)
+        dataset.reset_index(drop=True, inplace=True)
+        return dataset, labels
     if data_type == 'sequences':
         epigenomes, labels = load_dataset(load_parameters)
         genome = Genome('hg19')
