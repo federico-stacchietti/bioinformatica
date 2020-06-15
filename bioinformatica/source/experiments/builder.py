@@ -18,7 +18,7 @@ class Experiment:
         self.__statistical_tests_scores = {}
 
     def execute(self):
-        dataset, labels = pipeline(((self.__data_parameters, self.__data_type), self.__holdout_parameters[-1]))
+        dataset, labels = pipeline((self.__data_parameters, self.__holdout_parameters[-1]))
         defined_algorithms = define_models(self.__data_type, len(dataset.columns))
         for algorithm in defined_algorithms:
             for hyperparameters in defined_algorithms.get(algorithm):
