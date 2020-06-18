@@ -4,6 +4,7 @@ from ..preprocessing.pipeline import pipeline
 from ..models.builder import Model
 from ..models.definition import define_models
 from ..experiments.evaluation import test_models
+from ..preprocessing.elaboration import balance
 
 
 class Experiment:
@@ -26,8 +27,9 @@ class Experiment:
                 model.build(hyperparameters)
                 self.__models.append(model)
         for holdout, data in enumerate(get_holdouts(dataset, labels, self.__holdout_parameters)):
+            training_data, test_data = data
+            training_data = balance(training_data[0], training_data[1], 0)
             for model in self.__models:
-                training_data, test_data = data
                 model.train(training_data)
                 for metric in metrics:
                     model.test_metrics(metric, test_data)
@@ -39,5 +41,3 @@ class Experiment:
                 for metric in metrics:
                     self.__statistical_tests_scores.get(statistical_test.__name__) \
                         .append(test_models(self.__models, statistical_test, metric, alpha))
-
-

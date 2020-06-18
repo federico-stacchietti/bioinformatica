@@ -1,7 +1,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import RobustScaler
-from sklearn.utils import resample
+from imblearn.over_sampling import RandomOverSampler, SMOTE
+from imblearn.under_sampling import RandomUnderSampler
 
 
 def drop_constant_features(dataset: pd.DataFrame) -> pd.DataFrame:
@@ -10,17 +11,8 @@ def drop_constant_features(dataset: pd.DataFrame) -> pd.DataFrame:
 
 
 def balance(dataset: pd.DataFrame, labels: np.array, random_state: int) -> (pd.DataFrame, np.array):
-    n_samples = len(dataset)
-    max_unbalance = n_samples // 10
-    unique, counts = np.unique(labels, return_counts=True)
-    minority_label, minority_count = min(zip(unique, counts), key=lambda x: x[1])
-    if minority_count < max_unbalance:
-        dataset = pd.concat([dataset, resample(dataset.iloc[np.where(labels == minority_label)],
-                                    random_state=random_state, n_samples=max_unbalance - minority_count)], axis=0)
-        labels = labels + np.full(max_unbalance - minority_count, minority_label)
-        np.random.seed(random_state)
-        shuffle = np.random.permutation(range(len(labels)))
-        dataset, labels = dataset[shuffle], labels[shuffle]
+    sampler = RandomOverSampler(random_state=0)
+    dataset, labels = sampler.fit_resample(dataset, labels)
     return dataset, labels
 
 
