@@ -32,7 +32,7 @@ def nan_filter(dataset: pd.DataFrame, labels: np.array) -> (pd.DataFrame, np.arr
 
 
 def imputation(dataset: pd.DataFrame) -> pd.DataFrame:
-    if detect_nan(dataset):
+    if nan_check(dataset):
         dataset = pd.DataFrame(
             KNNImputer(n_neighbors=5).fit_transform(dataset.values),
             columns=dataset.columns,
