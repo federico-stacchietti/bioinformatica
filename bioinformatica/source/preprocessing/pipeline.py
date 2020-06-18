@@ -11,7 +11,6 @@ def epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, m
         dataset, labels = nan_filter(dataset, labels)
         dataset = imputation(dataset)
 
-    dataset, labels = balance(dataset, labels, random_state)
     dataset = drop_constant_features(dataset)
     dataset = robust_zscoring(dataset)
 
@@ -23,7 +22,6 @@ def epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, m
 
 
 def sequences_preprocessing(dataset, labels, random_state):
-    dataset, labels = balance(dataset, labels, random_state)
     return dataset, labels
 
 
