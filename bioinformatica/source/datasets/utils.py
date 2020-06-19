@@ -1,9 +1,11 @@
 from epigenomic_dataset import load_epigenomes
-
+from bioinformatica.source.utils import *
 from sklearn.model_selection import StratifiedShuffleSplit
+import pandas as pd
+import numpy as np
 
 
-def load_dataset(data_parameters):
+def load_dataset(data_parameters: Tuple[str, int, str]) -> Tuple[pd.DataFrame, np.array]:
     cell_line, window_size, epigenomes_type = data_parameters
     epigenomes, labels = load_epigenomes(
         cell_line=cell_line,
@@ -15,6 +17,6 @@ def load_dataset(data_parameters):
     return epigenomes, labels
 
 
-def holdouts(holdout_parameters):
+def holdouts(holdout_parameters: Tuple[int, float, int]) -> StratifiedShuffleSplit:
     n_split, test_size, random_state = holdout_parameters
     return StratifiedShuffleSplit(n_splits=n_split, test_size=test_size, random_state=random_state)

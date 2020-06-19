@@ -11,7 +11,7 @@ def drop_constant_features(dataset: pd.DataFrame) -> pd.DataFrame:
 
 
 def balance(dataset: pd.DataFrame, labels: np.array, random_state: int) -> (pd.DataFrame, np.array):
-    sampler = RandomOverSampler(random_state=0)
+    sampler = RandomOverSampler(random_state=random_state)
     dataset, labels = sampler.fit_resample(dataset, labels)
     return dataset, labels
 
