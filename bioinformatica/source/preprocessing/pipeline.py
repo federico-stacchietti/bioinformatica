@@ -28,12 +28,21 @@ def sequences_preprocessing(dataset: pd.DataFrame, labels: np.array, random_stat
 
 
 def pipeline(data_parameters: Tuple[Tuple[Tuple[str, int, str], str], int]) -> Tuple[pd.DataFrame, np.array]:
-    load_parameters, random_state = data_parameters
-    dataset, labels = get_data(load_parameters)
+    # load_parameters, random_state = data_parameters
+    # dataset, labels = get_data(load_parameters)
+    #
+    # if load_parameters[-1] == 'epigenomic':
+    #     p_value_threshold, min_correlation, correlation_threshold = 0.01, 0.05, 0.95
+    #     return epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation,
+    #                                     correlation_threshold)
+    # else:
+    #     return sequences_preprocessing(dataset, labels, random_state)
 
-    if load_parameters[-1] == 'epigenomic':
-        p_value_threshold, min_correlation, correlation_threshold = 0.01, 0.05, 0.95
-        return epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation,
-                                        correlation_threshold)
-    else:
-        return sequences_preprocessing(dataset, labels, random_state)
+    dataset = pd.read_csv("/home/flavio/boruta/dataset_borutaK562.csv")
+    f = open('/home/flavio/boruta/labels_borutaK562.txt', 'r+')
+    labels = np.asarray([int(line) for line in f.readlines()])
+    f.close()
+    dataset.drop(dataset.columns[0], inplace=True, axis=1)
+    # dataset = pd.DataFrame(PCA_function(dataset, 20))
+    # dataset, labels = balance(dataset, labels, 42)
+    return dataset, labels

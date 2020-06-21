@@ -33,6 +33,8 @@ class Experiment:
                 model.train(training_data)
                 for metric in metrics:
                     model.test_metrics(metric, test_data)
+        self.modelz = self.__models
+
 
     def evaluate(self):
         for alpha in self.__alphas:

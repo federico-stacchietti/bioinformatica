@@ -1,3 +1,6 @@
+from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.linear_model import SGDClassifier
+
 from ..models.libraries import *
 
 
@@ -11,6 +14,18 @@ def build_DecisionTree(hyperparameters):
 
 def build_RandomForest(hyperparameters):
     return RandomForestClassifier(**hyperparameters)
+
+
+def build_AdaBoost(hyperparameters):
+    return AdaBoostClassifier(**hyperparameters)
+
+
+def build_GradientBoosting(hyperparameters):
+    return GradientBoostingClassifier(**hyperparameters)
+
+
+def build_SGD(hyperparameters):
+    return SGDClassifier(**hyperparameters)
 
 
 def build_NeuralNetwork(parameters):
