@@ -1,8 +1,8 @@
-from ..preprocessing.correlation import filter_uncorrelated, filter_correlated_features
-from ..preprocessing.elaboration import balance, robust_zscoring, drop_constant_features
-from ..preprocessing.feature_selection import boostaroota, boruta
-from ..preprocessing.imputation import nan_check, nan_filter, imputation
-from ..datasets.loader import get_data
+from bioinformatica.source.preprocessing.correlation import filter_uncorrelated, filter_correlated_features
+from bioinformatica.source.preprocessing.elaboration import balance, robust_zscoring, drop_constant_features
+from bioinformatica.source.preprocessing.feature_selection import boostaroota, boruta
+from bioinformatica.source.preprocessing.imputation import nan_check, nan_filter, imputation
+from bioinformatica.source.datasets.loader import get_data
 import numpy as np
 import pandas as pd
 

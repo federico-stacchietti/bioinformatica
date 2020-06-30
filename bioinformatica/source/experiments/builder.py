@@ -1,9 +1,9 @@
-from .utils import *
-from ..datasets.loader import get_holdouts
-from ..preprocessing.pipeline import pipeline
-from ..models.builder import Model
-from ..experiments.evaluation import test_models
-from ..preprocessing.elaboration import balance
+from bioinformatica.source.experiments.utils import *
+from bioinformatica.source.datasets.loader import get_holdouts
+from bioinformatica.source.preprocessing.pipeline import pipeline
+from bioinformatica.source.models.builder import Model
+from bioinformatica.source.experiments.evaluation import test_models
+from bioinformatica.source.preprocessing.elaboration import balance
 from bioinformatica.source.commons import *
 
 

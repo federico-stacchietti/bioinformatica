@@ -1,4 +1,4 @@
-from ..models.libraries import *
+from bioinformatica.source.models.libraries import *
 from multiprocessing import cpu_count
 
 
