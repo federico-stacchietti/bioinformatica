@@ -11,6 +11,18 @@ build_models = {
     'NN': build_NeuralNetwork
 }
 
+'''
+Model class
+- algorithm: the algorithm to be used, such as Random Forest, FFNN, etc.
+- name: a name to identify a model
+- isNN: check if it is a NN
+
+Every model is builded using the correspondent building function in initialization_functions.py. Other new functions can 
+be added into initialization_functions.py and in the 'build_models' dictionary without modifying a line of code in Model
+class.
+ 
+'''
+
 
 class Model:
     def __init__(self, algorithm: str,  name: str, isNN: bool = False):

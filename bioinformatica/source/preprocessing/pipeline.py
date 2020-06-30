@@ -3,11 +3,9 @@ from bioinformatica.source.preprocessing.elaboration import balance, robust_zsco
 from bioinformatica.source.preprocessing.feature_selection import boostaroota, boruta
 from bioinformatica.source.preprocessing.imputation import nan_check, nan_filter, imputation
 from bioinformatica.source.datasets.loader import get_data
-import numpy as np
-import pandas as pd
 
 
-def epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation, correlation_threshold):
+def epigenomic_preprocessing(dataset, labels, p_value_threshold, min_correlation, correlation_threshold):
     if nan_check(dataset):
         dataset, labels = nan_filter(dataset, labels)
         dataset = imputation(dataset)
@@ -39,7 +37,7 @@ def pipeline(retrieve_parameters):
     dataset, labels = get_data(load_parameters)
 
     if load_parameters[-1] == 'epigenomic':
-        dataset, labels = epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, min_correlation,
+        dataset, labels = epigenomic_preprocessing(dataset, labels, p_value_threshold, min_correlation,
                                                    correlation_threshold)
     else:
         dataset, labels = sequences_preprocessing(dataset, labels)

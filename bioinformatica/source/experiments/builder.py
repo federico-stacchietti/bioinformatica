@@ -7,10 +7,45 @@ from bioinformatica.source.preprocessing.elaboration import balance
 from bioinformatica.source.commons import *
 
 
+'''
+Experiment class
+Class used to perform experiments
+An experiment is intended as a cell line to be analyzed, performing data retrieval, data preprocessing and machine learning
+algorithms on it.
+An Experiment object takes several arguments:
+- data_parameters: a tuple of tuple, to indicate cell line, window size and if the data must be enhancers or promoters and 
+a string inside the external tuple to indicate if it is epigenomic or sequences dataset
+- holdout_parameters: a tuple to indicate the number of split for holdouts, test set size and random state
+- alphas: values to use with statistical tests, like wilcoxon
+- defined_algorithms: algorithms and models defined for the experiment
+- balance_type: default is None, can be set to 
+
+methods:
+- execute(): runs the experiment. Retrieves the data, create holdouts (for train and test), builds the models, execute trainings
+    and test the trained models
+    
+- evaluate(): executes statistical tests, ordered by metric and by statistical test 
+
+Example of use:
+    data_type = 'sequences'
+    cell_line, window_size, typez = 'K562', 200, 'enhancers'
+    n_split, test_size, random_state = 1, 0.2, 1
+    balance = None
+    holdout_parameters = (n_split, test_size, random_state)
+    data_parameters = ((cell_line, window_size, typez), data_type)
+    alphas = [0.05]
+    experiment = Experiment(data_parameters, holdout_parameters, alphas, balance)
+    experiment.execute()
+    experiment.evaluate()
+    experiment.print_model_info('all')
+
+'''
+
+
 class Experiment:
-    def __init__(self, data_type: str, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters: Tuple[int, float, int],
+    def __init__(self, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters: Tuple[int, float, int],
                  alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None):
-        self.__data_type = data_type
+        self.__data_type = data_parameters[1]
         self.__data_parameters, self.__holdout_parameters = data_parameters, holdout_parameters
         self.__models = []
         self.__alphas = alphas
