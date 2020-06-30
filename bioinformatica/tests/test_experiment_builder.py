@@ -1,5 +1,4 @@
 from bioinformatica.source.experiments.builder import Experiment
-from tests.dummy_models import *
 from bioinformatica.source.experiments.utils import metrics, statistical_tests
 
 
