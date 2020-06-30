@@ -2,10 +2,11 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 
-def PCA_function(dataset, n_components):
-    return PCA(n_components=n_components).fit_transform(dataset)
+def PCA_function(dataset):
+    return PCA(n_components=50, random_state=0).fit_transform(dataset)
 
 
-def TSNE_function(dataset, n_components, perplexity, learning_rate):
-    return TSNE(n_components=n_components, perplexity=perplexity, learning_rate=learning_rate)\
+def TSNE_function(dataset):
+    dataset = PCA_function(dataset)
+    return TSNE(n_components=2, perplexity=30, random_state=0)\
         .fit_transform(dataset)
