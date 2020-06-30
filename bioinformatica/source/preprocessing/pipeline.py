@@ -12,13 +12,13 @@ def epigenomic_preprocessing(dataset, labels, random_state, p_value_threshold, m
         dataset, labels = nan_filter(dataset, labels)
         dataset = imputation(dataset)
 
-    dataset = drop_constant_features(dataset)
-    dataset = robust_zscoring(dataset)
+    # dataset = drop_constant_features(dataset)
+    # dataset = robust_zscoring(dataset)
+    #
+    # dataset = filter_uncorrelated(dataset, labels, p_value_threshold, min_correlation)
+    # dataset = filter_correlated_features(dataset, p_value_threshold, correlation_threshold)
 
-    dataset = filter_uncorrelated(dataset, labels, p_value_threshold, min_correlation)
-    dataset = filter_correlated_features(dataset, p_value_threshold, correlation_threshold)
-
-    dataset = boruta(dataset, labels, 10, 0.05, 2)
+    # dataset = boruta(dataset, labels, 10, 0.05, 2)
 
     return dataset, labels
 

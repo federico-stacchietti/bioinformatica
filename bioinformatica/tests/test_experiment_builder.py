@@ -1,5 +1,6 @@
 from bioinformatica.source.experiments.builder import Experiment
 from bioinformatica.source.experiments.utils import metrics, statistical_tests
+from bioinformatica.tests.dummy_models import define_models
 
 
 def test_experiment():
