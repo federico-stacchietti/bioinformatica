@@ -23,7 +23,7 @@ def test_execution():
     parameters = (('K562', 200, 'enhancers'), 'epigenomic')
     data = get_data(parameters)
     dataset, labels = data
-    holdout_parameters = 5, 0.2, 42
+    holdout_parameters = 1, 0.2, 1
     test_get_data(parameters)
     test_get_holdouts(dataset, labels, holdout_parameters, parameters[-1])
 
