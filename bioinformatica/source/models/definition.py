@@ -1,18 +1,13 @@
 from ..models.libraries import *
+from multiprocessing import cpu_count
 
 
-def define_models(data_type, nn_input_dimension=None):
-    Input_layer = None
-    if data_type == 'epigenomic':
-        Input_layer = Input(shape=(nn_input_dimension, ))
-    else:
-        Input_layer = Input(shape=(200, 4))
-
-    algorithms = []
-    models = {}
-    for name, defined_models in algorithms:
-        models[name] = []
-        for model in defined_models:
-            models.get(name).append(model)
-    return models
-
+def define_models():
+    models = {
+    }
+    defined_models = {}
+    for algorithm in models:
+        defined_models[algorithm] = []
+        for model in models.get(algorithm):
+            defined_models.get(algorithm).append(model)
+    return defined_models

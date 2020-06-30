@@ -20,7 +20,7 @@ def detect_nan_in_row(dataset: pd.DataFrame, threshold: int) -> np.array:
     for index, row in dataset.iterrows():
         if row.count() < threshold:
             indexes.append(index)
-    return indexes
+    return np.array(indexes)
 
 
 def nan_filter(dataset: pd.DataFrame, labels: np.array) -> (pd.DataFrame, np.array):
