@@ -1,4 +1,4 @@
-from .utils import holdouts, load_dataset
+from bioinformatica.source.datasets.utils import holdouts, load_dataset
 import numpy as np
 from ucsc_genomes_downloader import Genome
 from keras_bed_sequence import BedSequence

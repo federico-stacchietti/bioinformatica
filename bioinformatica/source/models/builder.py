@@ -1,5 +1,5 @@
-from ..models.intialization_functions import *
-from ..experiments.utils import metrics
+from bioinformatica.source.models.intialization_functions import *
+from bioinformatica.source.experiments.utils import metrics
 from bioinformatica.source.commons import *
 import numpy as np
 import pandas as pd

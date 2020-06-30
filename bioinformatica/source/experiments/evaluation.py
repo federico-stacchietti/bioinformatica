@@ -1,7 +1,7 @@
 import numpy as np
 from bioinformatica.source.commons import *
 import scipy.stats
-from .builder import Model
+from bioinformatica.source.models.builder import Model
 
 
 def test_models(models: List, statistical_test: scipy.stats, metric: Tuple[Callable, str], alpha: float) \
