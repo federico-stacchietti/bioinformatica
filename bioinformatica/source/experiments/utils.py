@@ -10,20 +10,12 @@ statistical_tests = [
 metrics = [
     (accuracy_score, 'labels'),
     (balanced_accuracy_score, 'labels'),
-    (roc_auc_score, 'prob'),
-    (average_precision_score, 'labels')
+    (roc_auc_score, 'probabilistic'),
+    (average_precision_score, 'probabilistic')
 ]
 
 
-def print_model(algorithm, metric, score, model):
-    if not algorithm == 'NN':
-        print(algorithm, '\n', metric, score)
-        pprint(model.parameters)
-        print('\n---------------------------\n')
-    else:
-        print(metric, score, '\n', model.nn_model.summary())
-        pprint(model.parameters[1])
-        pprint(model.parameters[-1])
-        for obj in model.parameters[-1].get('callbacks'):
-            pprint(vars(obj))
-        print('\n---------------------------\n')
+def print_model(model):
+    print(model.get_name())
+    pprint(model.get_scores())
+    print('\n')

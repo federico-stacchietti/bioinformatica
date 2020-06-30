@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from minepy.mine import MINE
+from minepy import MINE
 from scipy.stats import pearsonr, spearmanr, entropy
 
 

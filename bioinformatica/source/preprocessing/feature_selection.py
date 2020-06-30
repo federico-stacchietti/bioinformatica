@@ -17,8 +17,8 @@ def boruta(dataset: pd.DataFrame, labels: np.array, max_iter: int, p_value_thres
         max_iter=max_iter,
         random_state=random_state
     )
-    dataset = boruta_selector.fit_transform(dataset.values, labels)
-    return dataset
+    boruta_selector.fit(dataset.values, labels)
+    return dataset[dataset.columns[np.where(boruta_selector.support_ == True)]]
 
 
 def boostaroota(dataset: pd.DataFrame, labels: np.array) -> pd.DataFrame:
