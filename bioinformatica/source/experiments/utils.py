@@ -9,9 +9,9 @@ statistical_tests = [
 
 metrics = [
     (accuracy_score, 'labels'),
+    (average_precision_score, 'probabilistic'),
     (balanced_accuracy_score, 'labels'),
-    (roc_auc_score, 'probabilistic'),
-    (average_precision_score, 'probabilistic')
+    (roc_auc_score, 'probabilistic')
 ]
 
 
