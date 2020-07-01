@@ -5,6 +5,7 @@ from bioinformatica.source.models.builder import Model
 from bioinformatica.source.experiments.evaluation import test_models
 from bioinformatica.source.preprocessing.elaboration import balance
 from bioinformatica.source.type_hints import *
+from bioinformatica.source.datasets.loader import get_data
 import pandas as pd
 from pathlib import Path
 
@@ -25,6 +26,7 @@ a string inside the external tuple to indicate if it is epigenomic or sequences 
 - save_result: if true, will save results of the experiment in a csv file, ready to be visualized using visualization.py
     function
 - dataset_row_reduction: a parameter to take first n rows of a dataset to train
+- execute_pipeline: if data preprocessing is needed
 
 methods:
 - execute(): runs the experiment. Retrieves the data, create holdouts (for train and test), builds the models, execute trainings
@@ -40,12 +42,13 @@ Example of use:
     balance = 'under_sample'
     save_results = False
     dataset_row_reduction = None
+    execute_pipeline = True
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
     data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
     alphas = [0.05]
     experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance, 
-                            save_results, dataset_row_reduction)
+                            save_results, dataset_row_reduction, execute_pipeline)
     experiment.execute()
     experiment.evaluate()
     experiment.print_model_info('all')
@@ -55,7 +58,7 @@ Example of use:
 class Experiment:
     def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters:
             Tuple[int, float, int], alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None,
-            save_results: bool = False, dataset_row_reduction: int = None):
+            save_results: bool = False, dataset_row_reduction: int = None, execute_pipeline: bool = True):
         if save_results:
             self.__save_results = True
         else:
@@ -69,9 +72,13 @@ class Experiment:
         self.__balance_type = balance_type
         self.__defined_algorithms = defined_algorithms
         self.__dataset_row_reduction = dataset_row_reduction
+        self.__execute_pipeline = execute_pipeline
 
     def execute(self):
-        dataset, labels = pipeline((self.__data_parameters, self.__holdout_parameters[-1]))
+        if self.__execute_pipeline:
+            dataset, labels = pipeline((self.__data_parameters, self.__holdout_parameters[-1]))
+        else:
+            dataset, labels = get_data(self.__data_parameters)
         if self.__dataset_row_reduction:
             if self.__data_type == 'epigenomic':
                 dataset = dataset.head(self.__dataset_row_reduction)

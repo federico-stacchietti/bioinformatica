@@ -14,12 +14,13 @@ Example of an experiment setup:
     balance = 'under_sample'
     save_results = False
     dataset_row_reduction = None
+    execute_pipeline = True
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
     data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
     alphas = [0.05]
     experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance, 
-                            save_results, dataset_row_reduction)
+                            save_results, dataset_row_reduction, execute_pipeline)
     experiment.execute()
     experiment.evaluate()
     experiment.print_model_info('all')
