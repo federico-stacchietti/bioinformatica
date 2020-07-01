@@ -43,7 +43,7 @@ test_deps =[
     "scikit-learn",
     "Boruta",
     "keras-bed-sequence",
-    "tensorflow~=2.2.0",
+    "tensorflow",
     "keras-mixed-sequence",
     "ucsc-genomes-downloader",
     "keras-tqdm",
