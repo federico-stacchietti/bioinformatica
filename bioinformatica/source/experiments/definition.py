@@ -4,11 +4,12 @@ from bioinformatica.source.commons import *
 
 '''
 This functions allows to return a dictionary containing all the models to be trained. It returns a dictionary: every key
-is a string that represents a machine learning algorithm, the value for each key is a list that containes one or more models
+is a string that represents a machine learning algorithm, the value for each key is a list that contains one or more models
 for a particular algorithm. Every model is represented as a list of the values: a string for the name of the model and a 
 tuple containing the parameters to build and train a model.
-Neural networks use a tuple of three elements: the paramters to construct the network, compiling parameters and training paramters:
-Exemple of use for K562 enhancers:
+Neural networks use a tuple of three elements: the parameters to construct the network, compiling parameters and training parameters:
+
+Example of use for K562 enhancers epigenomic dataset:
 
 models = {
         'RandomForest': [
@@ -40,14 +41,15 @@ models = {
 
         'NN':
 
-             [['FFNN_1',
+             [
+             ['FFNN_1',
               (
                   ([
                        Input(shape=(298,)),
                        Dense(32, activation='relu'),
                        Dense(16, activation='relu'),
                        Dense(1, activation='sigmoid')
-                   ], 'FFNN'),
+                   ],),
 
                   dict(
                       optimizer='nadam',
@@ -74,7 +76,7 @@ models = {
                        Dense(32, activation='relu'),
                        Dense(16, activation='relu'),
                        Dense(1, activation='sigmoid')
-                   ], 'FFNN'),
+                   ],),
 
                   dict(
                       optimizer='nadam',
@@ -100,6 +102,7 @@ models = {
 
 def define_models() -> Dict[str, List]:
     models = {
+
     }
 
     defined_models = {}

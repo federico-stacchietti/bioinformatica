@@ -41,7 +41,6 @@ test_deps =[
     "matplotlib",
     "setuptools",
     "scikit-learn",
-    "boostaroota",
     "Boruta",
     "keras-bed-sequence",
     "tensorflow",

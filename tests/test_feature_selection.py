@@ -8,11 +8,6 @@ def test_boruta(dataset: pd.DataFrame, labels: np.array):
     assert isinstance(dataset, pd.DataFrame), 'boruta returned type is not pd.DataFrame'
 
 
-def test_boostaroota(dataset: pd.DataFrame, labels: np.array):
-    dataset = boostaroota(dataset, labels)
-    assert isinstance(dataset, pd.DataFrame), 'boostaruta returned type is not pd.DataFrame'
-
-
 def test_execution():
     parameters = ('GM12878', 200, 'enhancers'), 'epigenomic'
     dataset, labels = get_data(parameters)
@@ -20,5 +15,4 @@ def test_execution():
     dataset = imputation(dataset)
 
     test_boruta(dataset, labels)
-    test_boostaroota(dataset, labels)
 

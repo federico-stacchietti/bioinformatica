@@ -8,8 +8,8 @@ def define_models():
         'RandomForest': [
             ['random_forest_1',
              dict(
-                 n_estimators=20,
-                 max_depth=5,
+                 n_estimators=3,
+                 max_depth=2,
                  criterion='gini',
                  n_jobs=cpu_count()
              )],
@@ -18,14 +18,12 @@ def define_models():
 
         'NN':
              [
-                ['ffnn_1',
+                 ['FFNN_2',
                   (
                       ([
-                           Input(shape=(298, )),
-                           Dense(32, activation='relu'),
-                           Dense(16, activation='relu'),
+                           Input(shape=(298,)),
                            Dense(1, activation='sigmoid')
-                       ], 'FFNN'),
+                       ],),
 
                       dict(
                           optimizer='nadam',
@@ -33,7 +31,7 @@ def define_models():
                       ),
 
                       dict(
-                          epochs=10,
+                          epochs=1,
                           batch_size=1024,
                           validation_split=0.1,
                           shuffle=True,

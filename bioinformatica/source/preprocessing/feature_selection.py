@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from boostaroota import BoostARoota
 from boruta import BorutaPy
 from sklearn.ensemble import RandomForestClassifier
 from multiprocessing import cpu_count
@@ -20,7 +19,3 @@ def boruta(dataset: pd.DataFrame, labels: np.array, max_iter: int, p_value_thres
     boruta_selector.fit(dataset.values, labels)
     return dataset[dataset.columns[np.where(boruta_selector.support_ == True)]]
 
-
-def boostaroota(dataset: pd.DataFrame, labels: np.array) -> pd.DataFrame:
-    boostaroota_ = BoostARoota(metric='logloss', silent=True)
-    return boostaroota_.fit_transform(dataset, labels)
