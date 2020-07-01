@@ -7,6 +7,10 @@ def build_DecisionTree(hyperparameters: Dict) -> DecisionTreeClassifier:
     return DecisionTreeClassifier(**hyperparameters)
 
 
+def build_SGD(hyperparameters: Dict) -> SGDClassifier:
+    return SGDClassifier(**hyperparameters)
+
+
 def build_RandomForest(hyperparameters: Dict) -> RandomForestClassifier:
     return RandomForestClassifier(**hyperparameters)
 

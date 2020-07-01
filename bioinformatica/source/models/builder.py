@@ -8,6 +8,7 @@ import pandas as pd
 build_models = {
     'DecisionTree': build_DecisionTree,
     'RandomForest': build_RandomForest,
+    'SGD': build_SGD,
     'NN': build_NeuralNetwork
 }
 

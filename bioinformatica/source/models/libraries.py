@@ -1,6 +1,7 @@
 import sklearn
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import SGDClassifier
 from tensorflow.keras.layers import Input, Dense, Conv1D, MaxPooling1D, UpSampling1D, MaxPooling2D, UpSampling2D
 from tensorflow.keras.models import Model
 

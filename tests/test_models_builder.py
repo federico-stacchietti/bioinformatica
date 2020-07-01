@@ -6,6 +6,8 @@ from bioinformatica.source.experiments.utils import metrics
 
 def test_models():
     dataset, labels = load_dataset(('K562', 200, 'enhancers'))
+    dataset = dataset.head(100)
+    labels = labels[:100]
     n_sample = len(dataset)
     train_split = int(n_sample * 0.8)
     test_split = n_sample - train_split
@@ -13,16 +15,14 @@ def test_models():
     X_test, y_test = dataset.tail(test_split), labels[train_split:]
     training_data = (X_train, y_train)
     non_nn_parameters = dict(
-        n_estimators=20,
-        max_depth=5,
+        n_estimators=2,
+        max_depth=3,
         criterion='gini',
         n_jobs=cpu_count()
     )
     nn_parameters = (
         ([
             Input(shape=(298, )),
-            Dense(32, activation="relu"),
-            Dense(16, activation="relu"),
             Dense(1, activation="sigmoid")
         ], 'FFNN'),
 
@@ -30,7 +30,7 @@ def test_models():
              loss="binary_crossentropy"),
 
         dict(
-            epochs=10,
+            epochs=1,
             batch_size=1024,
             validation_split=0.1,
             shuffle=True,
