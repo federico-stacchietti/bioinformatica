@@ -13,7 +13,7 @@ def balance_visualization(filename: str, plot_title: str, labels: list, counts: 
     plt.bar(labels, counts)
     plt.title(plot_title)
     path = Path(__file__).parent
-    plt.savefig(str(path) + '/dataset_balancing/' + 'most_' + filename, bbox_inches='tight')
+    plt.savefig(str(path) + '/dataset_balancing/' + filename, bbox_inches='tight')
 
 
 def feature_correlations_visualization(filename: str, dataset: pd.DataFrame, features: list, labels: np.array, top: int,
