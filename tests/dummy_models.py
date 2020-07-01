@@ -33,13 +33,13 @@ def define_models():
                   ),
 
                   dict(
-                      epochs=1,
+                      epochs=10,
                       batch_size=1024,
                       validation_split=0.1,
                       shuffle=True,
                       verbose=True,
                       callbacks=[
-                          EarlyStopping(monitor='val_loss', mode='min', patience=5),
+                          EarlyStopping(monitor='val_loss', mode='min'),
                       ]
                   )
 

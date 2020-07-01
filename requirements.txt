@@ -11,6 +11,5 @@ keras-mixed-sequence~=1.0.9
 ucsc-genomes-downloader~=1.1.18
 epigenomic-dataset~=1.1.5
 keras-tqdm~=2.0.1
-cuml~=0.14.0
 minepy~=1.2.4
 imblearn~=0.0

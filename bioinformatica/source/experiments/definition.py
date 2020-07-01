@@ -55,13 +55,13 @@ models = {
                   ),
 
                   dict(
-                      epochs=1,
+                      epochs=10,
                       batch_size=1024,
                       validation_split=0.1,
                       shuffle=True,
                       verbose=True,
                       callbacks=[
-                          EarlyStopping(monitor='val_loss', mode='min', patience=5),
+                          EarlyStopping(monitor='val_loss', mode='min'),
                       ]
                   )
 
@@ -82,13 +82,13 @@ models = {
                   ),
 
                   dict(
-                      epochs=1,
+                      epochs=10,
                       batch_size=1024,
                       validation_split=0.1,
                       shuffle=True,
                       verbose=True,
                       callbacks=[
-                          EarlyStopping(monitor='val_loss', mode='min', patience=5),
+                          EarlyStopping(monitor='val_loss', mode='min'),
                       ]
                   )
 
@@ -131,9 +131,10 @@ def define_models() -> Dict[str, List]:
             [['FFNN_1',
               (
                   ([
-                       Input(shape=(200, 4)),
-                       Reshape((200, 4, 1)),
-                       Flatten(),
+                       Input(shape=(298, )),
+                       # Input(shape=(200, 4)),
+                       # Reshape((200, 4, 1)),
+                       # Flatten(),
                        Dense(32, activation='relu'),
                        Dense(16, activation='relu'),
                        Dense(1, activation='sigmoid')
@@ -158,7 +159,6 @@ def define_models() -> Dict[str, List]:
               )],
              ]
     }
-
 
     defined_models = {}
     for algorithm in models:

@@ -31,12 +31,9 @@ def feature_correlations_visualization(filename: str, dataset: pd.DataFrame, fea
     path = Path(__file__).parent
     plt.savefig(str(path) + '/features_distributions/' + 'most_' + filename, bbox_inches='tight')
 
-    # plt.savefig('most_' + filename, bbox_inches='tight')
-
     sns.pairplot(pd.concat([dataset.iloc[:, lc_all_indices], pd.DataFrame(labels)], axis=1), hue=0)
 
     plt.savefig(str(path) + '/features_distributions/' + 'least_' + filename, bbox_inches='tight')
-    # plt.savefig('least_' + filename, bbox_inches='tight')
 
 
 def feature_distribution_visualization(filename: str, dataset: pd.DataFrame, labels: np.array, top_number: int):

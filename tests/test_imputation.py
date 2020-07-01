@@ -7,7 +7,8 @@ def test_nan_check(dataset: pd.DataFrame):
 
 
 def test_detect_nan_in_row(dataset: pd.DataFrame, threshold: int):
-    assert isinstance(detect_nan_in_row(dataset, threshold), np.ndarray), 'detected_nan_in_row returned type is not np.ndarray'
+    assert isinstance(detect_nan_in_row(dataset, threshold), np.ndarray),\
+        'detected_nan_in_row returned type is not np.ndarray'
 
 
 def test_nan_filter(dataset: pd.DataFrame, labels: np.array):
@@ -26,6 +27,6 @@ def test_execution():
     dataset, labels = data
 
     test_nan_check(dataset)
-    test_detect_nan_in_row(dataset, int((dataset.shape[1]/10)*9))
+    test_detect_nan_in_row(dataset, int((dataset.shape[1] / 10) * 9))
     test_nan_filter(dataset, labels)
     test_imputation(dataset)
