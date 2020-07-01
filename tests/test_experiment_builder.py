@@ -1,8 +1,9 @@
 from bioinformatica.source.experiments.builder import Experiment
 from bioinformatica.source.experiments.utils import metrics, statistical_tests
 from tests.dummy_models import define_models
+import pytest
 
-
+@pytest.fixture()
 def test_experiment():
     experiment_id = 1
     data_type = 'epigenomic'

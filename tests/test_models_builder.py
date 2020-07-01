@@ -2,8 +2,10 @@ from bioinformatica.source.models.builder import *
 from multiprocessing import cpu_count
 from bioinformatica.source.datasets.utils import load_dataset
 from bioinformatica.source.experiments.utils import metrics
+import pytest
 
 
+@pytest.fixture()
 def test_models():
     dataset, labels = load_dataset(('K562', 200, 'enhancers'))
     dataset = dataset.head(100)
