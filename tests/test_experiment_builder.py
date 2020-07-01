@@ -18,7 +18,7 @@ def test_experiment():
                             save_results)
 
     experiment.execute()
-    assert len(experiment.get_models()) == len(defined_algorithms.values()), 'not all models were builder'
+    assert len(experiment.get_models()) == len(defined_algorithms.values()), 'not all models were built'
     total_scores = 0
     for model in experiment.get_models():
         total_scores += len([value for scores in model.get_scores().values() for value in scores])
