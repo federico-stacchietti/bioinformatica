@@ -56,6 +56,8 @@ class Experiment:
             save_results: bool = False):
         if save_results:
             self.__save_results = True
+        else:
+            self.__save_results = False
         self.__experiment_id = experiment_id
         self.__data_type = data_parameters[1]
         self.__data_parameters, self.__holdout_parameters = data_parameters, holdout_parameters

@@ -1,5 +1,5 @@
 from multiprocessing import cpu_count
-from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras.layers import Input, Dense, Reshape, Flatten
 from tensorflow.keras.callbacks import EarlyStopping
 
 
@@ -17,33 +17,33 @@ def define_models():
         ],
 
         'NN':
+             [
+                ['ffnn_1',
+                  (
+                      ([
+                           Input(shape=(298, )),
+                           Dense(32, activation='relu'),
+                           Dense(16, activation='relu'),
+                           Dense(1, activation='sigmoid')
+                       ], 'FFNN'),
 
-             [['ffnn_1',
-              (
-                  ([
-                       Input(shape=(298, )),
-                       Dense(32, activation='relu'),
-                       Dense(16, activation='relu'),
-                       Dense(1, activation='sigmoid')
-                   ], 'FFNN'),
+                      dict(
+                          optimizer='nadam',
+                          loss='binary_crossentropy'
+                      ),
 
-                  dict(
-                      optimizer='nadam',
-                      loss='binary_crossentropy'
-                  ),
+                      dict(
+                          epochs=10,
+                          batch_size=1024,
+                          validation_split=0.1,
+                          shuffle=True,
+                          verbose=True,
+                          callbacks=[
+                              EarlyStopping(monitor='val_loss', mode='min'),
+                          ]
+                      )
 
-                  dict(
-                      epochs=10,
-                      batch_size=1024,
-                      validation_split=0.1,
-                      shuffle=True,
-                      verbose=True,
-                      callbacks=[
-                          EarlyStopping(monitor='val_loss', mode='min'),
-                      ]
-                  )
-
-              )]
+                  )]
              ]
     }
     defined_models = {}

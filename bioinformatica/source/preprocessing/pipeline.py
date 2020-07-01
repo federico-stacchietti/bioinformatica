@@ -34,4 +34,5 @@ def pipeline(retrieve_parameters):
                                                    correlation_threshold)
     else:
         dataset, labels = get_data(load_parameters)
+    a = 0
     return dataset, labels
