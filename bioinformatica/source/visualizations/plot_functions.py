@@ -4,6 +4,7 @@ from sklearn.metrics.pairwise import euclidean_distances
 from bioinformatica.source.preprocessing.correlation import *
 from barplots import barplots
 from pathlib import Path
+import numpy as np
 
 
 def balance_visualization(filename: str, plot_title: str, labels: list, counts: np.array):
