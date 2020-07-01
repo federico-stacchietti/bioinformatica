@@ -26,8 +26,12 @@ Example of an experiment setup:
 '''
 
 '''
-Example of visualization setup:
+Visualization allows to plot many kind of data. Options include PCA visualization, the balancing of the dataset, the top 
+    n different tuples, feature correlation, feature distribution and TSNE.
+    Below you can find how to execute any visualization 
 
+Example of visualization setup:
+    
     data_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
