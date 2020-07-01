@@ -5,7 +5,7 @@ from tests.dummy_models import define_models
 
 def test_experiment():
     experiment_id = 1
-    data_type = 'sequences'
+    data_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
     balance = 'under_sample'
