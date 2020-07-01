@@ -13,6 +13,7 @@ def test_execution():
     dataset, labels = get_data(parameters)
 
     dataset = imputation(dataset)
-
+    dataset = dataset.head(200)
+    labels = labels[:200]
     test_boruta(dataset, labels)
 
