@@ -30,19 +30,19 @@ methods:
 - evaluate(): executes statistical tests, ordered by metric and by statistical test 
 
 Example of use:
+    experiment_id = 1
     data_type = 'sequences'
-    cell_line, window_size, typez = 'K562', 200, 'enhancers'
+    cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
-    balance = None
+    balance = 'under_sample'
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
-    data_parameters = ((cell_line, window_size, typez), data_type)
+    data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
     alphas = [0.05]
-    experiment = Experiment(data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
+    experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
     experiment.execute()
-    experiment.evaluate()
     experiment.print_model_info('all')
-
+    experiment.results_to_dataframe()
 '''
 
 
@@ -70,8 +70,9 @@ class Experiment:
             X_train, y_train = training_data
             X_test, y_test = test_data
             if self.__balance_type:
-                X_train, y_train = balance(X_train, y_train, self.__holdout_parameters[-1], self.__balance_type,
-                                           self.__data_type)
+                resampled_X_train, resampled_y_train = balance(X_train, y_train, self.__holdout_parameters[-1],
+                                                               self.__balance_type, self.__data_type)
+                training_data = (resampled_X_train, resampled_y_train)
             for model in self.__models:
                 model.train(training_data)
                 y_train_prediction = model.predict(X_train)

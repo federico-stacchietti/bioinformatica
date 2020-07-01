@@ -6,12 +6,12 @@ from tests.dummy_models import define_models
 def test_experiment():
     experiment_id = 2
     data_type = 'epigenomic'
-    cell_line, window_size, typez = 'K562', 200, 'enhancers'
+    cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 2, 0.2, 1
     balance = None
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
-    data_parameters = ((cell_line, window_size, typez), data_type)
+    data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
     alphas = [0.05]
     experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
 
