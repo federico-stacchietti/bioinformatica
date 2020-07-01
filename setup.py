@@ -38,7 +38,21 @@ test_deps =[
     "pandas",
     "numpy",
     "epigenomic-dataset",
-    "matplotlib"
+    "matplotlib",
+    "setuptools",
+    "scikit-learn",
+    "boostaroota",
+    "Boruta",
+    "keras-bed-sequence",
+    "tensorflow",
+    "keras-mixed-sequence",
+    "ucsc-genomes-downloader",
+    "keras-tqdm",
+    "minepy",
+    "imblearn",
+    "matplotlib",
+    "seaborn",
+    "barplots"
 ]
 
 extras = {
