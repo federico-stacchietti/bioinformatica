@@ -43,17 +43,20 @@ Example of visualization setup:
     dataset = imputation(dataset)
     
     make_visualization('experiment_results')
-    make_visualization('PCA', dataset, labels, cell_line, epigenomic_type, data_type, PCA_n_components=50)
-    make_visualization('balancing', dataset, labels, cell_line, epigenomic_type, data_type)
-    make_visualization('top_different_tuples', dataset, labels, cell_line, epigenomic_type, data_type,
+    make_visualization('PCA', dataset, labels, cell_line, epigenomic_type, dataset_type, PCA_n_components=50)
+    make_visualization('balancing', dataset, labels, cell_line, epigenomic_type, dataset_type)
+    make_visualization('top_different_tuples', dataset, labels, cell_line, epigenomic_type, dataset_type,
                        top_different_tuples=5)
-    make_visualization('feature_correlations', dataset, labels, cell_line, epigenomic_type, data_type)
-    make_visualization('feature_distribution', dataset, labels, cell_line, epigenomic_type, data_type)
-    make_visualization('TSNE', dataset, labels, cell_line, epigenomic_type, data_type,
+    make_visualization('feature_correlations', dataset, labels, cell_line, epigenomic_type, dataset_type,
+                       top_features_for_correlation=3, p_value_correlation=0.05)
+    make_visualization('feature_distribution', dataset, labels, cell_line, epigenomic_type, dataset_type,
+                       top_feature_distribution=5)
+    make_visualization('TSNE', dataset, labels, cell_line, epigenomic_type, dataset_type,
                        TSNE_n_components=2, PCA_before_TSNE=True, PCA_n_components=75, TSNE_perplexity=40)
 '''
 
 
 if __name__ == '__main__':
     pass
+
 

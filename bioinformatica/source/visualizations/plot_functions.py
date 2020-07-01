@@ -31,11 +31,11 @@ def feature_correlations_visualization(filename: str, dataset: pd.DataFrame, fea
     sns.pairplot(pd.concat([dataset.iloc[:, mc_all_indices], pd.DataFrame(labels)], axis=1), hue=0)
 
     path = Path(__file__).parent
-    plt.savefig(str(path) + '/features_correlation/' + 'MOST_' + filename, bbox_inches='tight')
+    plt.savefig(str(path) + '/features_correlations/' + 'MOST_' + filename, bbox_inches='tight')
 
     sns.pairplot(pd.concat([dataset.iloc[:, lc_all_indices], pd.DataFrame(labels)], axis=1), hue=0)
 
-    plt.savefig(str(path) + '/features_correlation/' + 'least_' + filename, bbox_inches='tight')
+    plt.savefig(str(path) + '/features_correlations/' + 'least_' + filename, bbox_inches='tight')
 
 
 def feature_distribution_visualization(filename: str, dataset: pd.DataFrame, labels: np.array, top_number: int):
@@ -96,9 +96,9 @@ def PCA_TSNE_visualization(filename: str, points: list, labels: list, algorithm:
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
     if algorithm == 'PCA':
-        plt.savefig(str(path) + '/decompositions_/PCA' + filename)
+        plt.savefig(str(path) + '/decompositions/PCA' + filename)
     else:
-        plt.savefig(str(path) + '/decompositions_/TSNE' + filename)
+        plt.savefig(str(path) + '/decompositions/TSNE' + filename)
 
 
 def experiment_visualization(filename: str, results: pd.DataFrame):

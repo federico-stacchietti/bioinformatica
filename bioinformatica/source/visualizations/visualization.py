@@ -31,15 +31,15 @@ def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.arra
     elif visualization_type == 'balancing':
         ones = np.count_nonzero(labels == 1)
         zeros = np.count_nonzero(labels == 0)
-        balance_visualization(cell_line + '_' + epigenomic_type + '_balance.png', cell_line + ', ' + epigenomic_type +
-                              ' class balance', ['0', '1'], [zeros, ones])
+        balance_visualization(cell_line + '_' + dataset_type + '_' + epigenomic_type + '_balance.png', cell_line + ', '
+                              + epigenomic_type + ' class balance', ['0', '1'], [zeros, ones])
     elif visualization_type == 'top_different_tuples':
-        top_different_tuples_visualization(cell_line + '_' + epigenomic_type + '_different_tuples.png', dataset,
-                                           top_different_tuples)
+        top_different_tuples_visualization(cell_line + '_' + dataset_type + '_' + epigenomic_type +
+                                           '_different_tuples.png', dataset, top_different_tuples)
     elif visualization_type == 'feature_correlations':
         features = feature_correlation(dataset)
-        feature_correlations_visualization(cell_line + '_' + epigenomic_type + '_correlation.png', dataset,
-                                           features, labels, top_features_for_correlation, p_value_correlation)
+        feature_correlations_visualization(cell_line + '_' + dataset_type + '_' + epigenomic_type + '_correlation.png',
+                                           dataset, features, labels, top_features_for_correlation, p_value_correlation)
     elif visualization_type == 'feature_distribution':
-        feature_distribution_visualization(cell_line + '_' + epigenomic_type + '_feature_distribution.png',
-                                           dataset, labels, top_feature_distribution)
+        feature_distribution_visualization(cell_line + '_' + dataset_type + '_' + epigenomic_type +
+                                           '_feature_distribution.png', dataset, labels, top_feature_distribution)
