@@ -100,41 +100,6 @@ models = {
 
 def define_models() -> Dict[str, List]:
     models = {
-
-        'NN':
-
-            [
-             ['FFNN_2',
-              (
-                  ([
-                       Input(shape=(200, 4)),
-                       Reshape((800, 1)),
-                       Flatten(),
-                       # Input(shape=(298,)),
-                       Dense(32, activation='relu'),
-                       Dense(16, activation='relu'),
-                       Dense(1, activation='sigmoid')
-                   ], 'FFNN'),
-
-                  dict(
-                      optimizer='nadam',
-                      loss='binary_crossentropy'
-                  ),
-
-                  dict(
-                      epochs=10,
-                      batch_size=1024,
-                      validation_split=0.1,
-                      shuffle=True,
-                      verbose=True,
-                      callbacks=[
-                          EarlyStopping(monitor='val_loss', mode='min'),
-                      ]
-                  )
-
-              )]
-             ]
-
     }
 
     defined_models = {}
