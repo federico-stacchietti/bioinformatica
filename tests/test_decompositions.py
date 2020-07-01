@@ -1,6 +1,5 @@
 from bioinformatica.source.preprocessing.decompositions import *
 from bioinformatica.source.datasets.loader import get_data
-import numpy as np
 
 
 def test_pca_function():
