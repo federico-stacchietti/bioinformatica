@@ -81,7 +81,7 @@ def top_different_tuples_visualization(filename: str, dataset: pd.DataFrame, top
     plt.savefig(str(path) + '/top_different_tuples/' + filename)
 
 
-def PCA_TSNE_visualization(filename: str, points: list, labels: list):
+def PCA_TSNE_visualization(filename: str, points: list, labels: list, algorithm: str):
     colors = np.array([
         "tab:blue",
         "tab:orange",
@@ -93,7 +93,10 @@ def PCA_TSNE_visualization(filename: str, points: list, labels: list):
     ax.scatter(xs, ys, s=1, color=colors[labels])
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
-    plt.savefig(str(path) + '/decompositions/' + filename)
+    if algorithm == 'PCA':
+        plt.savefig(str(path) + '/PCA_decompositions/' + filename)
+    else:
+        plt.savefig(str(path) + '/TSNE_decompositions/' + filename)
 
 
 def experiment_visualization(filename: str, results: pd.DataFrame):

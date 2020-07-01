@@ -1,5 +1,5 @@
 from bioinformatica.source.preprocessing.decompositions import PCA_function, TSNE_function
-from bioinformatica.source.visualizations.functions import *
+from bioinformatica.source.visualizations.plot_functions import *
 import os
 
 
