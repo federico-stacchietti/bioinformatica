@@ -34,7 +34,11 @@ test_deps =[
     "coveralls",
     "validate_version_code",
     "codacy-coverage",
-    'scipy~=1.4.1'
+    "scipy",
+    "pandas",
+    "numpy",
+    "epigenomic-dataset",
+    "matplotlib"
 ]
 
 extras = {
