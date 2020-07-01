@@ -6,8 +6,9 @@ import os
 def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.array = None, labels: np.array = None,
                        cell_line: str = None, epigenomic_type: str = None, dataset_type: str = None,
                        top_feature_distribution: int = None, top_features_for_correlation: int = None,
-                       p_value_correlation: float = None, PCA_before_TSNE: bool = True, PCA_n_components: int = 50,
-                       TSNE_n_components: int = 2, TSNE_perplexity: int = 30, random_state: int = 1):
+                       top_different_tuples: int = 5, p_value_correlation: float = None, PCA_before_TSNE: bool = True,
+                       PCA_n_components: int = 50, TSNE_n_components: int = 2, TSNE_perplexity: int = 30,
+                       random_state: int = 1):
     if visualization_type == 'experiment_results':
         path = Path(__file__).parent.parent
         experiment_files = os.listdir(str(path) + '/experiments/results')
@@ -31,7 +32,8 @@ def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.arra
         balance_visualization(cell_line + '_' + epigenomic_type + '_balance.png', cell_line + ', ' + epigenomic_type +
                               ' class balance', ['0', '1'], [zeros, ones])
     elif visualization_type == 'top_different_tuples':
-        top_different_tuples_visualization(cell_line + '_' + epigenomic_type + '_different_tuples.png', dataset, 5)
+        top_different_tuples_visualization(cell_line + '_' + epigenomic_type + '_different_tuples.png', dataset,
+                                           top_different_tuples)
     elif visualization_type == 'feature_correlations':
         features = feature_correlation(dataset)
         feature_correlations_visualization(cell_line + '_' + epigenomic_type + '_correlation.png', dataset,
