@@ -36,4 +36,3 @@ def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.arra
     elif visualization_type == 'feature_distribution':
         feature_distribution_visualization(cell_line + '_' + epigenomic_type + '_feature_distribution.png',
                                            dataset, labels, top_feature_distribution)
-
