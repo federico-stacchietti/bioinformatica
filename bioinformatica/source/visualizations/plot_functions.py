@@ -95,9 +95,9 @@ def PCA_TSNE_visualization(filename: str, points: list, labels: list, algorithm:
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
     if algorithm == 'PCA':
-        plt.savefig(str(path) + '/PCA_decompositions/' + filename)
+        plt.savefig(str(path) + '/PCA_decompositions_/' + filename)
     else:
-        plt.savefig(str(path) + '/TSNE_decompositions/' + filename)
+        plt.savefig(str(path) + '/TSNE_decompositions_/' + filename)
 
 
 def experiment_visualization(filename: str, results: pd.DataFrame):

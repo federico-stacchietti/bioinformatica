@@ -18,10 +18,10 @@ def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.arra
             print('No experiment has been made, so any result can\'t be plotted')
     elif visualization_type == 'PCA':
         dataset = PCA_function(dataset)
-        PCA_TSNE_visualization(cell_line + epigenomic_type + dataset_type, dataset, labels, 'PCA')
+        PCA_TSNE_visualization(cell_line + '_' + epigenomic_type + dataset_type, dataset, labels, 'PCA')
     elif visualization_type == 'TSNE':
         dataset = TSNE_function(dataset)
-        PCA_TSNE_visualization(cell_line + epigenomic_type + dataset_type, dataset, labels, 'TSNE')
+        PCA_TSNE_visualization(cell_line + '_' + epigenomic_type + dataset_type, dataset, labels, 'TSNE')
     elif visualization_type == 'balancing':
         ones = np.count_nonzero(labels == 1)
         zeros = np.count_nonzero(labels == 0)
