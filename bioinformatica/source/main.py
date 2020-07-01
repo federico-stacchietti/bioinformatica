@@ -28,6 +28,7 @@ Example of an experiment setup:
 '''
 Visualization allows to plot many kind of data. Options include PCA visualization, the balancing of the dataset, the top 
     n different tuples, feature correlation, feature distribution and TSNE.
+    Experiment results images can be found inside source.barplots folder
     Below you can find how to execute any visualization 
 
 Example of visualization setup:
@@ -39,6 +40,7 @@ Example of visualization setup:
     dataset, labels = get_data(data_parameters)
     dataset = imputation(dataset)
     
+    make_visualization('experiment_results')
     make_visualization('PCA', dataset, labels, cell_line, epigenomic_type, data_type, PCA_n_components=50)
     make_visualization('balancing', dataset, labels, cell_line, epigenomic_type, data_type)
     make_visualization('top_different_tuples', dataset, labels, cell_line, epigenomic_type, data_type,
@@ -52,5 +54,4 @@ Example of visualization setup:
 
 if __name__ == '__main__':
     pass
-
 

@@ -13,6 +13,7 @@ def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.arra
         path = Path(__file__).parent.parent
         experiment_files = os.listdir(str(path) + '/experiments/results')
         if len(experiment_files) > 1:
+            experiment_files = experiment_files[1:]
             for file in experiment_files:
                 dataframe = pd.read_csv(str(path) + '/experiments/results/' + file)
                 dataframe.drop(dataframe.columns[0], inplace=True, axis=1)
