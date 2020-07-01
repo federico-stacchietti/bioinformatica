@@ -8,7 +8,7 @@ from bioinformatica.source.preprocessing.imputation import imputation
 '''
 Example of an experiment setup:
     experiment_id = 1
-    data_type = 'epigenomic'
+    dataset_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
     balance = 'under_sample'
@@ -17,7 +17,7 @@ Example of an experiment setup:
     execute_pipeline = True
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
-    data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
+    data_parameters = ((cell_line, window_size, epigenomic_type), dataset_type)
     alphas = [0.05]
     experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance, 
                             save_results, dataset_row_reduction, execute_pipeline)
@@ -35,10 +35,10 @@ Visualization allows to plot many kind of data. Options include PCA visualizatio
 
 Example of visualization setup:
     
-    data_type = 'epigenomic'
+    dataset_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
-    data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
+    data_parameters = ((cell_line, window_size, epigenomic_type), dataset_type)
     dataset, labels = get_data(data_parameters)
     dataset = imputation(dataset)
     

@@ -64,7 +64,8 @@ def feature_correlation(dataset: pd.DataFrame) -> list:
     for i in range(len(dataset.columns)):
         for j in range(i + 1, len(dataset.columns)):
             if ' '.join([str(x) for x in sorted((i, j))]) not in [score[0] for score in score]:
-                correlation, p_value = pearsonr(dataset.iloc[i].values.ravel(), dataset.iloc[j].values.ravel())
+                correlation, p_value = pearsonr(dataset[dataset.columns[i]].values.ravel(),
+                                                dataset[dataset.columns[j]].values.ravel())
                 correlation = np.abs(correlation)
                 score.append((' '.join([str(x) for x in sorted((i, j))]), correlation, p_value))
     return score
