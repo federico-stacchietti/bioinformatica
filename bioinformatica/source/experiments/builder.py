@@ -5,6 +5,8 @@ from bioinformatica.source.models.builder import Model
 from bioinformatica.source.experiments.evaluation import test_models
 from bioinformatica.source.preprocessing.elaboration import balance
 from bioinformatica.source.commons import *
+import pandas as pd
+from pathlib import Path
 
 
 '''
@@ -13,12 +15,13 @@ Class used to perform experiments
 An experiment is intended as a cell line to be analyzed, performing data retrieval, data preprocessing and machine learning
 algorithms on it.
 An Experiment object takes several arguments:
+- experiment_id: used to identify an experiment, and to collect results from different experiments
 - data_parameters: a tuple of tuple, to indicate cell line, window size and if the data must be enhancers or promoters and 
 a string inside the external tuple to indicate if it is epigenomic or sequences dataset
 - holdout_parameters: a tuple to indicate the number of split for holdouts, test set size and random state
 - alphas: values to use with statistical tests, like wilcoxon
 - defined_algorithms: algorithms and models defined for the experiment
-- balance_type: default is None, can be set to 
+- balance_type: default is None, can be set to 'under_sample', 'over_sample' or SMOTE. Sequence data
 
 methods:
 - execute(): runs the experiment. Retrieves the data, create holdouts (for train and test), builds the models, execute trainings
@@ -44,8 +47,9 @@ Example of use:
 
 
 class Experiment:
-    def __init__(self, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters: Tuple[int, float, int],
+    def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters: Tuple[int, float, int],
                  alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None):
+        self.__experiment_id = experiment_id
         self.__data_type = data_parameters[1]
         self.__data_parameters, self.__holdout_parameters = data_parameters, holdout_parameters
         self.__models = []
@@ -65,8 +69,9 @@ class Experiment:
             training_data, test_data = data
             X_train, y_train = training_data
             X_test, y_test = test_data
-            if self.__balance_type and self.__data_type == 'epigenomic':
-                X_train, y_train = balance(X_train, y_train, self.__holdout_parameters[-1], self.__balance_type)
+            if self.__balance_type:
+                X_train, y_train = balance(X_train, y_train, self.__holdout_parameters[-1], self.__balance_type,
+                                           self.__data_type)
             for model in self.__models:
                 model.train(training_data)
                 y_train_prediction = model.predict(X_train)
@@ -106,5 +111,23 @@ class Experiment:
                 for score in self.__statistical_tests_scores.get(statistical_test.__name__):
                     pprint((score[0].get_name(), score[1:]))
 
+    def results_to_dataframe(self):
+        columns = ['model', 'run_type', 'accuracy', 'average precision', 'balanced accuracy', 'AUROC']
+        score_values = [[]] * len(metrics)
+        for model in self.__models:
+            model_scores = list(model.get_scores().values())
+            for i, score in enumerate(model_scores):
+                score_values[i] = score_values[i] + score
+        models_names = [[model.get_name()] * 2 * self.__holdout_parameters[0] for model in self.__models]
+        run_type_values = ['train', 'test'] * len(self.__models) * self.__holdout_parameters[0]
+        models_names = [x for y in models_names for x in y]
+        values = {columns[0]: models_names, columns[1]: run_type_values}
+        for i, column in enumerate(columns[2:]):
+            values[column] = score_values[i]
+
+        results = pd.DataFrame(values)
+        path = Path(__file__).parent
+        results.to_csv(str(path) + '/results/experiment_results_' + str(self.__experiment_id) + '.csv')
+        return results
 
 

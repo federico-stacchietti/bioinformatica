@@ -4,15 +4,16 @@ from tests.dummy_models import define_models
 
 
 def test_experiment():
+    experiment_id = 2
     data_type = 'epigenomic'
     cell_line, window_size, typez = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 2, 0.2, 1
     balance = None
+    defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
     data_parameters = ((cell_line, window_size, typez), data_type)
     alphas = [0.05]
-    defined_algorithms = define_models()
-    experiment = Experiment(data_type, data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
+    experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
 
     experiment.execute()
     assert len(experiment.get_models()) == len(defined_algorithms.values()), 'not all models were builder'
