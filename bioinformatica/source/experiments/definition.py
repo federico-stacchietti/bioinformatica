@@ -8,7 +8,7 @@ is a string that represents a machine learning algorithm, the value for each key
 for a particular algorithm. Every model is represented as a list of the values: a string for the name of the model and a 
 tuple containing the parameters to build and train a model.
 Neural networks use a tuple of three elements: the paramters to construct the network, compiling parameters and training paramters:
-Exemple of use:
+Exemple of use for K562 enhancers:
 
 models = {
         'RandomForest': [
