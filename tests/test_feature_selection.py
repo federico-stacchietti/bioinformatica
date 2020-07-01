@@ -15,8 +15,7 @@ def test_boostaroota(dataset: pd.DataFrame, labels: np.array):
 
 def test_execution():
     parameters = ('GM12878', 200, 'enhancers'), 'epigenomic'
-    data = get_data(parameters)
-    dataset, labels = data
+    dataset, labels = get_data(parameters)
 
     dataset = imputation(dataset)
 

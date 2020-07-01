@@ -19,8 +19,7 @@ Model class
 
 Every model is builded using the correspondent building function in initialization_functions.py. Other new functions can 
 be added into initialization_functions.py and in the 'build_models' dictionary without modifying a line of code in Model
-class.
- 
+class. 
 '''
 
 

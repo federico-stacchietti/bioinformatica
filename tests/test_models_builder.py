@@ -36,7 +36,7 @@ def test_models():
             shuffle=True,
             verbose=False,
             callbacks=[
-                EarlyStopping(monitor="val_loss", mode="min", patience=5),
+                EarlyStopping(monitor="val_loss", mode="min"),
             ]
         )
     )

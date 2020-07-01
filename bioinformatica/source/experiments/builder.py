@@ -20,8 +20,10 @@ An Experiment object takes several arguments:
 a string inside the external tuple to indicate if it is epigenomic or sequences dataset
 - holdout_parameters: a tuple to indicate the number of split for holdouts, test set size and random state
 - alphas: values to use with statistical tests, like wilcoxon
-- defined_algorithms: algorithms and models defined for the experiment
+- defined_algorithms: algorithms and models defined for the experiment, into definition.py file
 - balance_type: default is None, can be set to 'under_sample', 'over_sample' or SMOTE. Sequence data
+- save_result: if true, will save results of the experiment in a csv file, ready to be visualized using visualization.py
+    function
 
 methods:
 - execute(): runs the experiment. Retrieves the data, create holdouts (for train and test), builds the models, execute trainings
@@ -31,24 +33,29 @@ methods:
 
 Example of use:
     experiment_id = 1
-    data_type = 'sequences'
+    data_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
     n_split, test_size, random_state = 1, 0.2, 1
     balance = 'under_sample'
+    save_results = False
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
     data_parameters = ((cell_line, window_size, epigenomic_type), data_type)
     alphas = [0.05]
-    experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance)
+    experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance, 
+                            save_results)
     experiment.execute()
+    experiment.evaluate()
     experiment.print_model_info('all')
-    experiment.results_to_dataframe()
 '''
 
 
 class Experiment:
-    def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters: Tuple[int, float, int],
-                 alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None):
+    def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters:
+            Tuple[int, float, int], alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None,
+            save_results: bool = False):
+        if save_results:
+            self.__save_results = True
         self.__experiment_id = experiment_id
         self.__data_type = data_parameters[1]
         self.__data_parameters, self.__holdout_parameters = data_parameters, holdout_parameters
@@ -81,6 +88,8 @@ class Experiment:
                     model.test_metrics(metric, (y_train, y_train_prediction))
                 for metric in metrics:
                     model.test_metrics(metric, (y_test, y_test_prediction))
+        if self.__save_results:
+            self.__results_to_dataframe()
 
     def evaluate(self):
         for alpha in self.__alphas:
@@ -112,7 +121,7 @@ class Experiment:
                 for score in self.__statistical_tests_scores.get(statistical_test.__name__):
                     pprint((score[0].get_name(), score[1:]))
 
-    def results_to_dataframe(self):
+    def __results_to_dataframe(self):
         columns = ['model', 'run_type', 'accuracy', 'average precision', 'balanced accuracy', 'AUROC']
         score_values = [[]] * len(metrics)
         for model in self.__models:
@@ -129,6 +138,5 @@ class Experiment:
         results = pd.DataFrame(values)
         path = Path(__file__).parent
         results.to_csv(str(path) + '/results/experiment_results_' + str(self.__experiment_id) + '.csv')
-        return results
 
 
