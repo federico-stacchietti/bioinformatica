@@ -5,7 +5,7 @@ from bioinformatica.source.preprocessing.imputation import nan_check, nan_filter
 from bioinformatica.source.datasets.loader import get_data
 import pandas as pd
 import numpy as np
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 
 
 def epigenomic_preprocessing(dataset: pd.DataFrame, labels: np.array, p_value_threshold: float, min_correlation: float,

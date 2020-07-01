@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.preprocessing import RobustScaler
 from imblearn.over_sampling import RandomOverSampler, SMOTE
 from imblearn.under_sampling import RandomUnderSampler
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 
 
 balances = {

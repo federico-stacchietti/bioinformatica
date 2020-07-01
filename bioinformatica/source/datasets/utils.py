@@ -1,6 +1,6 @@
 from epigenomic_dataset import load_epigenomes
 from sklearn.model_selection import StratifiedShuffleSplit
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 import pandas as pd
 import numpy as np
 

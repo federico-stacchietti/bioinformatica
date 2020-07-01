@@ -1,6 +1,7 @@
 from bioinformatica.source.preprocessing.decompositions import PCA_function, TSNE_function
 from bioinformatica.source.visualizations.plot_functions import *
 import os
+from pathlib import Path
 
 
 def make_visualization(visualization_type: str, dataset: pd.DataFrame or np.array = None, labels: np.array = None,

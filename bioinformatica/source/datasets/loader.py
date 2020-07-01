@@ -3,7 +3,7 @@ import numpy as np
 from ucsc_genomes_downloader import Genome
 from keras_bed_sequence import BedSequence
 from keras_mixed_sequence import MixedSequence
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 import pandas as pd
 
 

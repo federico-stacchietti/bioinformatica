@@ -4,7 +4,7 @@ from bioinformatica.source.preprocessing.pipeline import pipeline
 from bioinformatica.source.models.builder import Model
 from bioinformatica.source.experiments.evaluation import test_models
 from bioinformatica.source.preprocessing.elaboration import balance
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 import pandas as pd
 from pathlib import Path
 

@@ -1,5 +1,5 @@
 import numpy as np
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 import scipy.stats
 from bioinformatica.source.models.builder import Model
 

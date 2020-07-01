@@ -1,6 +1,6 @@
 from bioinformatica.source.models.libraries import *
 from multiprocessing import cpu_count
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 
 '''
 This functions allows to return a dictionary containing all the models to be trained. It returns a dictionary: every key

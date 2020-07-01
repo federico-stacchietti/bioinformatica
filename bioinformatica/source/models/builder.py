@@ -1,6 +1,6 @@
 from bioinformatica.source.models.intialization_functions import *
 from bioinformatica.source.experiments.utils import metrics
-from bioinformatica.source.commons import *
+from bioinformatica.source.type_hints import *
 import numpy as np
 import pandas as pd
 
