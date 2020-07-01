@@ -1,10 +1,8 @@
 from bioinformatica.source.preprocessing.decompositions import *
 from bioinformatica.source.datasets.loader import get_data
 import numpy as np
-import pytest
 
 
-@pytest.fixture()
 def test_pca_function():
     parameters = ('K562', 200, 'enhancers'), 'epigenomic'
     dataset, labels = get_data(parameters)
@@ -13,7 +11,6 @@ def test_pca_function():
     assert dataset is not None, 'an error occurred while decomposing the dataset with PCA'
 
 
-@pytest.fixture()
 def test_tsne_function():
     parameters = ('K562', 200, 'enhancers'), 'epigenomic'
     dataset, labels = get_data(parameters)

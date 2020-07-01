@@ -2,10 +2,8 @@ from bioinformatica.source.models.builder import *
 from multiprocessing import cpu_count
 from bioinformatica.source.datasets.utils import load_dataset
 from bioinformatica.source.experiments.utils import metrics
-import pytest
 
 
-@pytest.fixture()
 def test_models():
     dataset, labels = load_dataset(('K562', 200, 'enhancers'))
     dataset = dataset.head(100)
@@ -17,8 +15,8 @@ def test_models():
     X_test, y_test = dataset.tail(test_split), labels[train_split:]
     training_data = (X_train, y_train)
     non_nn_parameters = dict(
-        n_estimators=2,
-        max_depth=3,
+        n_estimators=20,
+        max_depth=5,
         criterion='gini',
         n_jobs=cpu_count()
     )
