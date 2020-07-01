@@ -51,8 +51,7 @@ test_deps =[
     "imblearn",
     "matplotlib",
     "seaborn",
-    "barplots",
-    "bioinformatica.source.results"
+    "barplots"
 ]
 
 extras = {
