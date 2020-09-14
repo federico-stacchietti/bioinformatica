@@ -38,11 +38,11 @@ repository progetto bioinformatica
     :target: https://www.codacy.com/manual/steckk/bioinformatica?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=steckk/bioinformatica&amp;utm_campaign=Badge_Grade
     :alt: Codacy Maintainability
 
-.. |code_climate_maintainability| image:: https://api.codeclimate.com/v1/badges/08a09910c7b3923ab14e/maintainability
-    :target: https://codeclimate.com/github/steckk/bioinformatica/maintainability
+.. |code_climate_maintainability| image:: https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability
+    :target: https://codeclimate.com/github/federico-stacchietti/bioinformatica/maintainability
     :alt: Maintainability
 
-.. |code_climate_coverage| image:: https://api.codeclimate.com/v1/badges/08a09910c7b3923ab14e/test_coverage
-    :target: https://codeclimate.com/github/steckk/bioinformatica/test_coverage
+.. |code_climate_coverage| image:: https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage
+    :target: https://codeclimate.com/github/federico-stacchietti/bioinformatica/test_coverage
     :alt: Code Climate Coverage
 
