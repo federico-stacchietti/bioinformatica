@@ -3,7 +3,7 @@ git:
   depth: false
 addons:
   sonarcloud:
-    organization: "steckk"
+    organization: "federico-stacchietti"
     token:
       secure: "rQEHaNGO2sk6oEVRFtI5oxCIIHUQhUo72KRyb2HlcHMeqiby/6n7fFUSM7FEPXA2lenA4di7phxUNkbrnLLOBqFDDyUHHBREbUTLoGgzPmdse1sH2F8B1ddXQSUzzQ6XVwIZOtBO6MDMd82aq7iAfsI7Fxxfu04oDZWYD+El+Vj1/fKqllpywGVf7LzG+IreeRsUU5AWccLp+qbPneD2wGxmKT+OIDorf+cN/Tf7+H+mGYmepZCjbBVDpfBBjQnwBaqN4rqk/ab0UdUQQr3wj/D8RakRVc21yHN9PwbqKNSGjetc8ChN0rNy/jU75Fhu3sQ+w2TIIlnPscT+wImEDuC4eSg+CYdV8XG9gaE+HRnNTGTbTfsiAwcRf2Q+SmYQ9PT/zdVdbdHe2OFVyG1wx4QMZ5RdIfyK6vCu4VwHaRl2mYhoENQbdzp4VGVOVnXBabeHL68gQff4QeiGjp9KctRhWtfByPz86kWbeEKb0FE5K50uZdAYWqmZEPztRVECKKqmbhWowSOnaKK1uYUTcQtB9ljW1PgQcSJGzYlra+p64q4Ft028lGxkUPsKEZvAXqBhCKldNs2K+EgHVUa7MpbeoJt++m/UBeEcf+NGY+WD4KJPNKgYBXjwZzL7aqvPpURNyD4ie0Oq53HmWhNSVX5kLvUIlepQXh36zFlNrlA="
 language: python
