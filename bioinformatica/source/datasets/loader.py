@@ -19,9 +19,9 @@ def get_data(parameters: Tuple[Tuple[str, int, str], str]) -> Tuple[pd.DataFrame
         bed = epigenomes.reset_index()[epigenomes.index.names]
         batch_size = len(labels)
         return [data for data in MixedSequence(
-                x=BedSequence(genome, bed.iloc[np.arange(batch_size)], batch_size=batch_size),
-                y=labels[np.arange(batch_size)],
-                batch_size=batch_size)[0]]
+            x=BedSequence(genome, bed.iloc[np.arange(batch_size)], batch_size=batch_size),
+            y=labels[np.arange(batch_size)],
+            batch_size=batch_size)][0]
 
 
 def get_holdouts(dataset: pd.DataFrame or np.array, labels: np.array, holdout_parameters: Tuple[int, float, int], data_type: str) \

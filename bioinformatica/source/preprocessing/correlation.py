@@ -51,7 +51,7 @@ def filter_correlated_features(dataset: pd.DataFrame, p_value_threshold: float, 
     for indices, correlation, p_value in features:
         first, second = [int(v) for v in indices.split(' ')]
         if p_value < p_value_threshold and correlation > correlation_threshold:
-            if entropy(dataset.iloc[first]) > entropy(dataset.iloc[second]):
+            if entropy(dataset[dataset.columns[first]]) > entropy(dataset[dataset.columns[second]]):
                 to_drop.append(second)
             else:
                 to_drop.append(first)
