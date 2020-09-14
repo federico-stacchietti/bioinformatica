@@ -1,6 +1,6 @@
 from bioinformatica.source.experiments.builder import Experiment
 from bioinformatica.source.experiments.definition import *
-from bioinformatica.source.visualizations.visualization import *
+from bioinformatica.source.visualizations.utils import *
 from bioinformatica.source.datasets.loader import get_data
 from bioinformatica.source.preprocessing.imputation import imputation
 
@@ -45,6 +45,7 @@ Example of visualization setup:
     visualize_balance(labels, cell_line, epigenomic_type, dataset_type)
     visualize_top_different_tuples()
     visualize_feature_distribution(dataset, labels, top_n_features=5, cell_line, epigenomic_type, dataset_type)
+    visualize_feature_correlations(dataset, labels, top_n_features, 0.95, cell_line, epigenomic_type, dataset_type)
     visualize_PCA(dataset, labels, random_state, PCA_n_components, cell_line, epigenomic_type, dataset_type)
     visualize_TSNE(dataset, labels, random_state, TSNE_n_components, TSNE_perplexity, PCA_before_TSNE, PCA_n_components,
      cell_line, epigenomic_type, dataset_type)
