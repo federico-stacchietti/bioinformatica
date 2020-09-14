@@ -63,7 +63,7 @@ setup(
     version=__version__,
     description="repository progetto bioinformatica",
     long_description=long_description,
-    url="https://github.com/steckk/bioinformatica",
+    url="https://github.com/federico-stacchietti/bioinformatica",
     author="federico.stacchietti@gmail.com",
     author_email="steckk",
     # Choose your license
