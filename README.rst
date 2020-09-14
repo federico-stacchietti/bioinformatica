@@ -15,7 +15,7 @@ get slightly different results, here's three of them:
 repository progetto bioinformatica
 
 .. |travis| image:: https://travis-ci.org/steckk/bioinformatica.png
-   :target: https://travis-ci.org/federico-stacchietti/bioinformatica
+   :target: https://travis-ci.org/steckk/bioinformatica
    :alt: Travis CI build
 
 .. |sonar_quality| image:: https://sonarcloud.io/api/project_badges/measure?project=steckk_bioinformatica&metric=alert_status
