@@ -19,7 +19,7 @@ repository progetto bioinformatica
    :alt: Travis CI build
 
 .. |sonar_quality| image:: https://sonarcloud.io/api/project_badges/measure?project=steckk_bioinformatica&metric=alert_status
-    :target: https://sonarcloud.io/dashboard/index/federico-stacchietti_bioinformatica
+    :target: https://sonarcloud.io/dashboard/index/steckk_bioinformatica
     :alt: SonarCloud Quality
 
 .. |sonar_maintainability| image:: https://sonarcloud.io/api/project_badges/measure?project=steckk_bioinformatica&metric=sqale_rating
@@ -27,7 +27,7 @@ repository progetto bioinformatica
     :alt: SonarCloud Maintainability
 
 .. |sonar_coverage| image:: https://sonarcloud.io/api/project_badges/measure?project=steckk_bioinformatica&metric=coverage
-    :target: https://sonarcloud.io/dashboard/index/federico-stacchietti_bioinformatica
+    :target: https://sonarcloud.io/dashboard/index/steckk_bioinformatica
     :alt: SonarCloud Coverage
 
 .. |coveralls| image:: https://coveralls.io/repos/github/steckk/bioinformatica/badge.svg?branch=master
