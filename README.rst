@@ -14,7 +14,7 @@ get slightly different results, here's three of them:
 
 repository progetto bioinformatica
 
-.. |travis| image:: https://travis-ci.org/github/federico-stacchietti/bioinformatica.png
+.. |travis| image:: https://travis-ci.org/federico-stacchietti/bioinformatica.png
    :target: https://travis-ci.org/github/federico-stacchietti/bioinformatica
    :alt: Travis CI build
 
