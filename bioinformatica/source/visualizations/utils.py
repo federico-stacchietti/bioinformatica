@@ -17,7 +17,7 @@ def visualize_balance(labels: list or np.array, cell_line: str, epigenomic_type:
     plt.figure(figsize=(4, 3))
     plt.grid(b=True, axis='both')
     plt.subplot(111)
-    plt.bar(labels, [zeros, ones])
+    plt.bar(['0', '1'], [zeros, ones])
     plt.title(plot_title)
     path = Path(__file__).parent
     plt.savefig(str(path) + '/dataset_balancing/' + filename, bbox_inches='tight')
@@ -108,7 +108,7 @@ def make_PCA(filename: str, points: list, labels: list):
     ax.scatter(xs, ys, s=1, color=colors[labels])
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
-    plt.savefig(str(path) + '/decompositions/PCA' + filename)
+    plt.savefig(str(path) + '/decompositions/PCA_' + filename)
 
 
 def make_TSNE(filename: str, points: list, labels: list):
@@ -123,7 +123,7 @@ def make_TSNE(filename: str, points: list, labels: list):
     ax.scatter(xs, ys, s=1, color=colors[labels])
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
-    plt.savefig(str(path) + '/decompositions/TSNE' + filename)
+    plt.savefig(str(path) + '/decompositions/TSNE_' + filename)
 
 
 def visualize_PCA(dataset: pd.DataFrame, labels: np.array, random_state: int, PCA_n_components: int, cell_line: str,
