@@ -13,10 +13,9 @@ Example of an experiment setup (see experiments/builder.py for a detailed descri
     experiment_id = 1
     dataset_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
-    n_split, test_size, random_state = 1, 0.2, 1
+    n_split, test_size, random_state = 10, 0.2, 1
     balance = 'under_sample'
     save_results = True
-    dataset_row_reduction = None
     execute_pipeline = True
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)

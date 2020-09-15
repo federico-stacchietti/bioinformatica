@@ -25,7 +25,6 @@ a string inside the external tuple to indicate if it is epigenomic or sequences 
 - balance_type: default is None, can be set to 'under_sample', 'over_sample' or SMOTE. Sequence data
 - save_result: if true, will save results of the experiment in a csv file, ready to be visualized using visualization.py
     function
-- dataset_row_reduction: a parameter to take first n rows of a dataset to train
 - execute_pipeline: if data preprocessing is needed
 
 methods:
@@ -58,7 +57,7 @@ Example of use:
 class Experiment:
     def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters:
             Tuple[int, float, int], alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None,
-            save_results: bool = False, dataset_row_reduction: int = None, execute_preprocessing_pipeline: bool = True):
+            save_results: bool = False, execute_preprocessing_pipeline: bool = True):
         if save_results:
             self.__save_results = True
         else:
@@ -71,7 +70,6 @@ class Experiment:
         self.__statistical_tests_scores = {}
         self.__balance_type = balance_type
         self.__defined_algorithms = defined_algorithms
-        self.__dataset_row_reduction = dataset_row_reduction
         self.__execute_pipeline = execute_preprocessing_pipeline
 
     def execute(self):
@@ -79,13 +77,6 @@ class Experiment:
             dataset, labels = pipeline((self.__data_parameters, self.__holdout_parameters[-1]))
         else:
             dataset, labels = get_data(self.__data_parameters)
-        if self.__dataset_row_reduction:
-            if self.__data_type == 'epigenomic':
-                dataset = dataset.head(self.__dataset_row_reduction)
-                labels = labels[:self.__dataset_row_reduction]
-            else:
-                dataset = dataset[:self.__dataset_row_reduction]
-                labels = labels[:self.__dataset_row_reduction]
         for algorithm in self.__defined_algorithms:
             for name, hyperparameters in self.__defined_algorithms.get(algorithm):
                 model = Model(algorithm, name, False if type(hyperparameters) == dict else True)
