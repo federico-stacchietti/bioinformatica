@@ -157,6 +157,7 @@ def visualize_experiment_scores():
         experiment_files = experiment_files[1:]
         for file in experiment_files:
             dataframe = pd.read_csv(str(path) + '/experiments/results/' + file)
+            dataframe.drop(dataframe.columns[0], inplace=True, axis=1)
             make_barplots(str(file)[:-4] + '_', dataframe)
     else:
         print('No experiment has been made, so any result can\'t be plotted')
