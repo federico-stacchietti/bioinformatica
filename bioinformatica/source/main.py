@@ -22,7 +22,7 @@ Example of an experiment setup (see experiments/builder.py for a detailed descri
     data_parameters = ((cell_line, window_size, epigenomic_type), dataset_type)
     alphas = [0.05]
     experiment = Experiment(experiment_id, data_parameters, holdout_parameters, alphas, defined_algorithms, balance, 
-                            save_results, dataset_row_reduction, execute_pipeline)
+                            save_results, execute_pipeline)
     experiment.execute()
     experiment.evaluate()
     experiment.print_model_info('all')
