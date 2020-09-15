@@ -1,4 +1,0 @@
-best model for accuracy is: encoder_FFNN with a mean score of 0.8844460014012612
-best model for average precision is: Perceptron with a mean score of 0.3856452680507316
-best model for balanced accuracy is: SGD with a mean score of 0.764448743706732
-best model for AUROC is: Perceptron with a mean score of 0.8642275130010051
