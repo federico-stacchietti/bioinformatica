@@ -58,7 +58,7 @@ Example of use:
 class Experiment:
     def __init__(self, experiment_id: int, data_parameters: Tuple[Tuple[str, int, str], str], holdout_parameters:
             Tuple[int, float, int], alphas: List[float], defined_algorithms: Dict[str, List], balance_type: str = None,
-            save_results: bool = False, dataset_row_reduction: int = None, execute_pipeline: bool = True):
+            save_results: bool = False, dataset_row_reduction: int = None, execute_preprocessing_pipeline: bool = True):
         if save_results:
             self.__save_results = True
         else:
@@ -72,7 +72,7 @@ class Experiment:
         self.__balance_type = balance_type
         self.__defined_algorithms = defined_algorithms
         self.__dataset_row_reduction = dataset_row_reduction
-        self.__execute_pipeline = execute_pipeline
+        self.__execute_pipeline = execute_preprocessing_pipeline
 
     def execute(self):
         if self.__execute_pipeline:
@@ -92,6 +92,7 @@ class Experiment:
                 model.build(hyperparameters)
                 self.__models.append(model)
         for holdout, data in enumerate(get_holdouts(dataset, labels, self.__holdout_parameters, self.__data_type)):
+            print('Holdout n.: ', holdout)
             training_data, test_data = data
             X_train, y_train = training_data
             X_test, y_test = test_data
@@ -100,6 +101,7 @@ class Experiment:
                                                                self.__balance_type, self.__data_type)
                 training_data = (resampled_X_train, resampled_y_train)
             for model in self.__models:
+                print('Model: ' + model.get_name())
                 model.train(training_data)
                 y_train_prediction = model.predict(X_train)
                 y_test_prediction = model.predict(X_test)
@@ -107,6 +109,7 @@ class Experiment:
                     model.test_metrics(metric, (y_train, y_train_prediction))
                 for metric in metrics:
                     model.test_metrics(metric, (y_test, y_test_prediction))
+            print('\n\n')
         if self.__save_results:
             self.__results_to_dataframe()
 

@@ -27,7 +27,7 @@ def epigenomic_preprocessing(dataset: pd.DataFrame, labels: np.array, p_value_th
 
 def pipeline(retrieve_parameters: Tuple[Tuple[Tuple[str, int, str], str], int]) -> Tuple[pd.DataFrame, np.array] or \
                                                                                    Tuple[np.array, np.array]:
-
+    print('Starting preprocessing pipeline')
     load_parameters, random_state = retrieve_parameters
 
     p_value_threshold, min_correlation, correlation_threshold = 0.01, 0.05, 0.95
@@ -39,4 +39,5 @@ def pipeline(retrieve_parameters: Tuple[Tuple[Tuple[str, int, str], str], int]) 
                                                    correlation_threshold)
     else:
         dataset, labels = get_data(load_parameters)
+    print('Preprocessing pipeline completed')
     return dataset, labels

@@ -153,9 +153,9 @@ def make_barplots(filename: str, results: pd.DataFrame):
 def visualize_experiment_scores():
     path = Path(__file__).parent.parent
     experiment_files = os.listdir(str(path) + '/experiments/results')
-    if len(experiment_files) >= 1:
+    if len(experiment_files) > 1:
+        experiment_files = experiment_files[1:]
         for file in experiment_files:
-            print(str(file)[:-4] + '_')
             dataframe = pd.read_csv(str(path) + '/experiments/results/' + file)
             make_barplots(str(file)[:-4] + '_', dataframe)
     else:

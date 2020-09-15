@@ -6,7 +6,10 @@ from bioinformatica.source.preprocessing.imputation import imputation
 
 
 '''
-Example of an experiment setup:
+Preprocessing pipeline parameters can be set in preprocessing/pipeline.py file. Also, there can be decided which step
+to perform and you can add your own custom functions
+
+Example of an experiment setup (see experiments/builder.py for a detailed description of parameters):
     experiment_id = 1
     dataset_type = 'epigenomic'
     cell_line, window_size, epigenomic_type = 'K562', 200, 'enhancers'
@@ -42,18 +45,17 @@ Example of visualization setup:
     dataset, labels = get_data(data_parameters)
     dataset = imputation(dataset)
     
+    visualize_experiment_scores()
     visualize_balance(labels, cell_line, epigenomic_type, dataset_type)
-    visualize_top_different_tuples()
-    visualize_feature_distribution(dataset, labels, top_n_features=5, cell_line, epigenomic_type, dataset_type)
+    visualize_top_different_tuples(dataset, top_different, cell_line, dataset_type, epigenomic_type)
+    visualize_feature_distribution(dataset, labels, 5, cell_line, epigenomic_type, dataset_type)
     visualize_feature_correlations(dataset, labels, top_n_features, 0.95, cell_line, epigenomic_type, dataset_type)
     visualize_PCA(dataset, labels, random_state, PCA_n_components, cell_line, epigenomic_type, dataset_type)
     visualize_TSNE(dataset, labels, random_state, TSNE_n_components, TSNE_perplexity, PCA_before_TSNE, PCA_n_components,
-     cell_line, epigenomic_type, dataset_type)
-    visualize_experiment_scores()
+                   cell_line, epigenomic_type, dataset_type)
 '''
 
 
 if __name__ == '__main__':
     pass
-
 
