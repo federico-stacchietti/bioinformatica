@@ -16,7 +16,7 @@ Example of an experiment setup (see experiments/builder.py for a detailed descri
     n_split, test_size, random_state = 10, 0.2, 1
     balance = 'under_sample'
     save_results = True
-    execute_pipeline = True
+    execute_pipeline = False
     defined_algorithms = define_models()
     holdout_parameters = (n_split, test_size, random_state)
     data_parameters = ((cell_line, window_size, epigenomic_type), dataset_type)
