@@ -1,0 +1,5 @@
+best model for accuracy is: random_forest_1 with a mean score of 0.8980894153611005
+best model for average precision is: Perceptron with a mean score of 0.2845778578594788
+best model for balanced accuracy is: FFNN_1 with a mean score of 0.5583787882050066
+best model for AUROC is: Perceptron with a mean score of 0.6765461074492266
+
